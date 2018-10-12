@@ -1,10 +1,6 @@
 #include "shapes.hpp"
 #include <math.h>
 
-#include <stdio.h>
-#include <iostream>
-using namespace std;
-
 namespace Shapes {
     char** Shape::get(Shapes::Type shape_type, int n, int width = 1) { 
         int SIZE = 8 * n;
@@ -62,19 +58,4 @@ namespace Shapes {
         }
         return mat;
     }
-}
-
-
-int main() {
-    Shapes::Shape *obj = new Shapes::Shape();
-    char **mat = obj->get(Shapes::TRIANGLE, 3 , 10);
-
-    cout << "MAT" << endl;
-    for(int i=0;i<32;i++) { 
-        for(int j=0;j<32;j++) 
-            cout << (mat[i][j] == 1);
-        cout << endl;
-    }
-
-    return 0;
 }
