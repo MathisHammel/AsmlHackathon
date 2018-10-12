@@ -57,26 +57,28 @@ namespace Shapes {
 
             break;
 
+            case LARGE_OPAQUE:
             case ROUND:
-                for ( int l = 0; l < width; l++) {
-                    /*
-                    for (i = mid - 1, j = l; i >= l; i--, j++) 
-                        mat[i][j] = 1;
-                    for (i++, j = mid; i < mid; i++, j++)
-                        mat[i][j] = 1;
-                    for (j = SIZE - 1 - l; i < SIZE - l; i++, j--)
-                        mat[i][j] = 1;
-                    for (i--, j = mid - 1; i >= mid; i--, j--)
-                        mat[i][j] = 1;*/
-                    
-                }
                 float i;
+                int r = 16;
+                if (shape_type == SMALL_OPAQUE)
+                    r = 5;
                 for(i = 0.0; i<=6.29; i+=0.05) {
-                        int x=16 + 16*cos(i);
-                        int y=16 + 16*sin(i);
-                        if(x>=0 && x<32 && y>=0 && y<32){
+                        int x=r + r*cos(i);
+                        int y=r + r*sin(i);
+                        if(x>=0 && x<2*r && y>=0 && y<2*r){
                             mat[x][y] = 1;
                         }
+                }
+
+                if (shape_type == LARGE_OPAQUE || shape_type == SMALL_OPAQUE) {
+                    for(int i=0;i<SIZE;i++) {
+                        int cnt = 0;
+                        for(int j=0;j<SIZE;j++) {
+                            cnt += mat[i][j];
+                            if (cnt > 0) mat[i][j] = 1;
+                        }
+                    }
                 }
 
             break;

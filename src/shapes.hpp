@@ -7,7 +7,9 @@ namespace Shapes {
         SQUARE,
         TRIANGLE,
         DIAMOND,
-        ROUND
+        ROUND,
+        LARGE_OPAQUE,
+        SMALL_OPAQUE
     };
 
     class Shape {
