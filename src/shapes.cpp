@@ -64,11 +64,14 @@ namespace Shapes {
                 int r = 16;
                 if (shape_type == SMALL_OPAQUE)
                     r = 5;
+
+                int offsideX = (SIZE - 2*r) / 2;
+                int offsideY = (SIZE - 2*r) / 2;
                 for(i = 0.0; i<=6.29; i+=0.05) {
                         int x=r + r*cos(i);
                         int y=r + r*sin(i);
                         if(x>=0 && x<2*r && y>=0 && y<2*r){
-                            mat[x][y] = 1;
+                            mat[x + offsideX][y + offsideY] = 1;
                         }
                 }
 
