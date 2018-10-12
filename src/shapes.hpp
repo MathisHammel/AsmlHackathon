@@ -4,6 +4,7 @@
 namespace Shapes {
 
     enum Type {
+        ASML,
         SQUARE,
         TRIANGLE,
         DIAMOND,
