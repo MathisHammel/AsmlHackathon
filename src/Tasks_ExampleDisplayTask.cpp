@@ -8,6 +8,8 @@
 #include "Tasks_ExampleDisplayTask.hpp"
 
 #include "Debug.hpp"
+#include "Constants.hpp"
+
 #include "Facilities_MeshNetwork.hpp"
 
 #include <LEDMatrixDriver.hpp>
@@ -34,15 +36,23 @@ ExampleDisplayTask::ExampleDisplayTask(Facilities::MeshNetwork& mesh) :
    m_lmd.setEnabled(true);
    m_lmd.setIntensity(LEDMATRIX_INTENSITY);
 
-   m_mesh.onReceive(std::bind(&ExampleDisplayTask::receivedCb, this, std::placeholders::_1, std::placeholders::_2));
+   if(MASTER) {
+       m_lmd.clear();
+       m_lmd.setPixel(0, 0, true);
+       m_lmd.display();
+   } else {
+       m_mesh.onReceive(std::bind(&ExampleDisplayTask::receivedCb, this, std::placeholders::_1, std::placeholders::_2));
+   }
 }
 
 //! Update display
 void ExampleDisplayTask::execute()
 {
-   m_lmd.clear();
-   m_lmd.setPixel(m_x, 0, true);
-   m_lmd.display();
+    if(!MASTER) {
+        m_lmd.clear();
+        m_lmd.setColumn(m_x^24, 255);
+        m_lmd.display();
+    }
 }
 
 void ExampleDisplayTask::receivedCb(Facilities::MeshNetwork::NodeId nodeId, String& msg)

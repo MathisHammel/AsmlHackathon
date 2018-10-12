@@ -8,6 +8,8 @@
 #include "Tasks_ExampleTransmitTask.hpp"
 
 #include "Debug.hpp"
+#include "Constants.hpp"
+
 #include "Facilities_MeshNetwork.hpp"
 
 #include <functional>
@@ -16,7 +18,7 @@ namespace Tasks {
 
 
 ExampleTransmitTask::ExampleTransmitTask(Facilities::MeshNetwork& mesh) :
-   Task(TASK_SECOND * 1 , TASK_FOREVER, std::bind(&ExampleTransmitTask::execute, this)),
+   Task(TASK_SECOND , TASK_FOREVER, std::bind(&ExampleTransmitTask::execute, this)),
    m_mesh(mesh)
 {
 
@@ -24,9 +26,11 @@ ExampleTransmitTask::ExampleTransmitTask(Facilities::MeshNetwork& mesh) :
 
 void ExampleTransmitTask::execute()
 {
-   String msg = F("Ping from node ");
-   msg += m_mesh.getMyNodeId();
-   m_mesh.sendBroadcast( msg );
+    if(MASTER) {
+        String msg = F("Ping from node ");
+        msg += m_mesh.getMyNodeId();
+        m_mesh.sendBroadcast( msg );
+    }
 }
 
 } // namespace Tasks
