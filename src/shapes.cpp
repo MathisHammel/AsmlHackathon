@@ -73,10 +73,11 @@ namespace Shapes {
 
                 if (shape_type == LARGE_OPAQUE || shape_type == SMALL_OPAQUE) {
                     for(int i=0;i<SIZE;i++) {
-                        int cnt = 0;
+                        int cnt = 0, last = SIZE - 1, start = 0;
+                        while (start < SIZE && mat[i][start] != 1)
+                        while (last >=0 && mat[i][last] != 1)
                         for(int j=0;j<SIZE;j++) {
-                            cnt += mat[i][j];
-                            if (cnt > 0) mat[i][j] = 1;
+                            if (start <= j && j <= last) mat[i][j] = 1;
                         }
                     }
                 }
