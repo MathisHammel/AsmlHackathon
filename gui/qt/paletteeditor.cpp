@@ -50,9 +50,9 @@ void PaletteEditor::drawAtPixel(const QPoint& pos, bool value){
     int c = x/boxSize();
     int r = y/boxSize();
 
-    if (c >= m_model[0].size())
+    if (c >= 32)
         return;
-    if (r >= m_model.size())
+    if (r >= 32)
         return;
 
     m_model[r][c] = value;
@@ -76,9 +76,9 @@ void PaletteEditor::swapAtPixel(const QPoint& pos, bool trackSame){
     if (trackSame && m_lastC == c && m_lastR == r)
         return;
 
-    if (c >= m_model[0].size())
+    if (c >= 32)
         return;
-    if (r >= m_model.size())
+    if (r >= 32)
         return;
 
     qDebug() << m_model[r][c];
