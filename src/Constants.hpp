@@ -5,3 +5,6 @@
 #else
     #define MASTER 0
 #endif
+
+
+#define MSG_TYPE_IMG "image"

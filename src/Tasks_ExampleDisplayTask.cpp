@@ -41,7 +41,7 @@ ExampleDisplayTask::ExampleDisplayTask(Facilities::MeshNetwork& mesh) :
        m_lmd.setPixel(0, 0, true);
        m_lmd.display();
    } else {
-       m_mesh.onReceive(std::bind(&ExampleDisplayTask::receivedCb, this, std::placeholders::_1, std::placeholders::_2));
+       m_mesh.onReceive(std::bind(&ExampleDisplayTask::receivedJsonPacket, this, std::placeholders::_1, std::placeholders::_2));
    }
 }
 
@@ -63,6 +63,27 @@ void ExampleDisplayTask::receivedCb(Facilities::MeshNetwork::NodeId nodeId, Stri
    {
       m_x=0;
    }
+   
+}
+
+void ExampleDisplayTask::receivedJsonPacket(Facilities::MeshNetwork::NodeId nodeId, String& msg)
+{
+    //parse json packet
+    DynamicJsonBuffer jsonBuffer;
+    JsonObject& root = jsonBuffer.parseObject(msg);
+    
+    if (root.containsKey("type")) {
+        if (String(MSG_TYPE_IMG).equals(root["type"].as<String>())) {
+            // check for on: true or false
+            size_t nodeId = root["nodeId"];
+            if(1) //check if destined to this nodeId == mesh.getNodeId(); 
+            {
+                //TODO: call local interface
+            }
+        }
+        
+    }
+
 }
 
 } // namespace Tasks

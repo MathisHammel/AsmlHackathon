@@ -1,0 +1,9 @@
+{
+	"folders": [],
+	"settings": {
+		"terminal.integrated.env.windows": {
+			"PATH": "C:\\Users\\Hackaton\\.platformio\\penv\\Scripts;C:\\Users\\Hackaton\\.platformio\\penv;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\Riverbed\\Steelhead Mobile\\;C:\\Program Files\\Microsoft VS Code\\bin;C:\\Users\\Hackaton\\AppData\\Local\\Microsoft\\WindowsApps;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\Riverbed\\Steelhead Mobile\\;C:\\Program Files\\Microsoft VS Code\\bin;C:\\Users\\Hackaton\\AppData\\Local\\Microsoft\\WindowsApps",
+			"PLATFORMIO_CALLER": "vscode"
+		}
+	}
+}
