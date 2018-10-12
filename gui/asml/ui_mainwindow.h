@@ -19,6 +19,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
@@ -35,8 +36,11 @@ public:
     PaletteEditor *canvas;
     QGridLayout *gridLayout;
     QPushButton *editBbutton;
-    QPushButton *clearButton;
     QPushButton *editAbutton;
+    QPushButton *clearButton;
+    QPushButton *pushButton;
+    QSpacerItem *verticalSpacer;
+    QSpacerItem *verticalSpacer_2;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -67,17 +71,30 @@ public:
         editBbutton = new QPushButton(horizontalLayoutWidget);
         editBbutton->setObjectName(QStringLiteral("editBbutton"));
 
-        gridLayout->addWidget(editBbutton, 2, 0, 1, 1);
-
-        clearButton = new QPushButton(horizontalLayoutWidget);
-        clearButton->setObjectName(QStringLiteral("clearButton"));
-
-        gridLayout->addWidget(clearButton, 0, 0, 1, 1);
+        gridLayout->addWidget(editBbutton, 3, 0, 1, 1);
 
         editAbutton = new QPushButton(horizontalLayoutWidget);
         editAbutton->setObjectName(QStringLiteral("editAbutton"));
 
-        gridLayout->addWidget(editAbutton, 1, 0, 1, 1);
+        gridLayout->addWidget(editAbutton, 2, 0, 1, 1);
+
+        clearButton = new QPushButton(horizontalLayoutWidget);
+        clearButton->setObjectName(QStringLiteral("clearButton"));
+
+        gridLayout->addWidget(clearButton, 1, 0, 1, 1);
+
+        pushButton = new QPushButton(horizontalLayoutWidget);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+
+        gridLayout->addWidget(pushButton, 5, 0, 1, 1);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout->addItem(verticalSpacer, 4, 0, 1, 1);
+
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout->addItem(verticalSpacer_2, 0, 0, 1, 1);
 
 
         horizontalLayout->addLayout(gridLayout);
@@ -103,8 +120,9 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
         editBbutton->setText(QApplication::translate("MainWindow", "Edit Shape B", Q_NULLPTR));
-        clearButton->setText(QApplication::translate("MainWindow", "Clear", Q_NULLPTR));
         editAbutton->setText(QApplication::translate("MainWindow", "Edit shape A", Q_NULLPTR));
+        clearButton->setText(QApplication::translate("MainWindow", "Clear", Q_NULLPTR));
+        pushButton->setText(QApplication::translate("MainWindow", "Run", Q_NULLPTR));
     } // retranslateUi
 
 };

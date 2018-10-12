@@ -10,8 +10,6 @@ PaletteEditor::PaletteEditor(QWidget* parent):
 {
     m_model = vector<vector<bool>>(m_rows, vector<bool>(m_columns, false));
 
-    m_model[2][3] = true;
-
     m_penRed = QPen(QBrush(Qt::black), 1);
 }
 

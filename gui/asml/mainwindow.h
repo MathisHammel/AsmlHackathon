@@ -20,10 +20,18 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    Q_SLOT void selectA();
+    Q_SLOT void selectB();
+    void saveCurrent();
+
 
 private:
 
     Ui::MainWindow *ui;
+
+    vector<vector<bool>>* m_currentModel;
+    vector<vector<bool>> m_modelA;
+    vector<vector<bool>> m_modelB;
 };
 
 #endif // MAINWINDOW_H
