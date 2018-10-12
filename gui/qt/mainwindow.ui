@@ -23,7 +23,7 @@
       <height>481</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QHBoxLayout" name="horizontalLayout" stretch="2,0">
      <item>
       <widget class="PaletteEditor" name="canvas" native="true"/>
      </item>

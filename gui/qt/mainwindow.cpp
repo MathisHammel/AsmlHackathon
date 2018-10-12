@@ -47,13 +47,14 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->editBbutton, &QPushButton::pressed, this, &MainWindow::selectB);
     connect(ui->runButton, &QPushButton::pressed, this, &MainWindow::writeToPort);
 
-    ui->selectShape->addItem("----");
+    ui->selectShape->addItem("----");   
     ui->selectShape->addItem("Triangle");
     ui->selectShape->addItem("Square");
     ui->selectShape->addItem("Diamond");
     ui->selectShape->addItem("Circle");
     ui->selectShape->addItem("Large Disk");
     ui->selectShape->addItem("Small Disk");
+    ui->selectShape->addItem("ASML");
 
 
     connect(ui->selectShape, static_cast<void(QComboBox::*)(int)>(&QComboBox::activated), this, [this](int i){
@@ -86,6 +87,10 @@ MainWindow::MainWindow(QWidget *parent) :
             break;
         case 6:
             t = Shapes::SMALL_OPAQUE;
+            ui->canvas->loadModel(toModel(obj.get(t,  4 , 1)));
+            break;
+        case 7:
+            t = Shapes::ASML;
             ui->canvas->loadModel(toModel(obj.get(t,  4 , 1)));
             break;
 

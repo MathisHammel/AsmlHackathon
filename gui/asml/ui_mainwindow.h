@@ -146,6 +146,7 @@ public:
 
         horizontalLayout->addLayout(gridLayout);
 
+        horizontalLayout->setStretch(0, 2);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));

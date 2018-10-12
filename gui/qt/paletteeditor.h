@@ -24,7 +24,7 @@ public:
     }
 
     Q_SLOT void clear();
-    QSize sizeHint() const;
+//    QSize sizeHint() const;
 
     vector<vector<bool>> getModel(){return m_model;}
     void loadModel(vector<vector<bool>> model){m_model = model;}
@@ -44,7 +44,7 @@ private:
     QColor color;
     QPen m_penRed;
 
-    int m_rows = 38;
+    int m_rows = 32;
     int m_columns = 32;
 
     int m_lastR = -1;
