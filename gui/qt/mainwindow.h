@@ -23,6 +23,7 @@ public:
     Q_SLOT void selectA();
     Q_SLOT void selectB();
     void saveCurrent();
+    Q_SLOT void writeToPort();
 
 
 private:

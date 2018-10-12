@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT += serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -28,12 +29,14 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         paletteeditor.cpp \
-        ../../algorithms/shapes.cpp
+        ../../algorithms/shapes.cpp \
+        serialportwriter.cpp
 
 HEADERS += \
         mainwindow.h \
         paletteeditor.h \
-        ../../algorithms/shapes.hpp
+        ../../algorithms/shapes.hpp \
+        serialportwriter.h
 
 FORMS += \
         mainwindow.ui

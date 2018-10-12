@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "../../algorithms/shapes.hpp"
+#include "serialportwriter.h"
+
 #include <QDebug>
 
 vector<vector<bool>> toModel(char** mat){
@@ -28,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->clearButton, &QPushButton::pressed, ui->canvas, &PaletteEditor::clear);
     connect(ui->editAbutton, &QPushButton::pressed, this, &MainWindow::selectA);
     connect(ui->editBbutton, &QPushButton::pressed, this, &MainWindow::selectB);
+    connect(ui->runButton, &QPushButton::pressed, this, &MainWindow::writeToPort);
 
     ui->selectShape->addItem("----");
     ui->selectShape->addItem("Triangle");
@@ -87,4 +90,30 @@ Q_SLOT void MainWindow::selectB(){
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::writeToPort(){
+        QSerialPort serialPort;
+        const QString serialPortName = "COM3";
+        serialPort.setPortName(serialPortName);
+
+        const int serialPortBaudRate = QSerialPort::Baud9600;
+        serialPort.setBaudRate(serialPortBaudRate);
+
+        serialPort.open(QIODevice::WriteOnly);
+
+        const char* data = "TEST";
+        const QByteArray writeData(data);
+
+        if (writeData.isEmpty()) {
+            qDebug() << QObject::tr("Either no data was currently available on "
+                                          "the standard input for reading, "
+                                          "or an error occurred for port %1, error: %2")
+                              .arg(serialPortName).arg(serialPort.errorString()) << endl;
+            return;
+        }
+
+        qDebug() << "start to write";
+        SerialPortWriter serialPortWriter(&serialPort);
+        serialPortWriter.write(writeData);
 }
