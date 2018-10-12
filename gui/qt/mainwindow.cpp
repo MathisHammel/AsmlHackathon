@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "../../src/shapes.hpp"
+#include "../../algorithms/shapes.hpp"
 #include <QDebug>
 
 vector<vector<bool>> toModel(char** mat){

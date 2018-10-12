@@ -28,12 +28,12 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         paletteeditor.cpp \
-        ../../src/shapes.cpp
+        ../../algorithms/shapes.cpp
 
 HEADERS += \
         mainwindow.h \
         paletteeditor.h \
-        ../../src/shapes.h
+        ../../algorithms/shapes.hpp
 
 FORMS += \
         mainwindow.ui
