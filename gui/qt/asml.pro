@@ -29,13 +29,13 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         paletteeditor.cpp \
-        ../../algorithms/shapes.cpp \
+        ../../src/shapes.cpp \
         serialportwriter.cpp
 
 HEADERS += \
         mainwindow.h \
         paletteeditor.h \
-        ../../algorithms/shapes.hpp \
+        ../../src/shapes.hpp \
         serialportwriter.h
 
 FORMS += \

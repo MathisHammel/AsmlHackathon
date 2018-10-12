@@ -39,18 +39,19 @@ public:
     QHBoxLayout *horizontalLayout;
     PaletteEditor *canvas;
     QGridLayout *gridLayout;
-    QSpacerItem *verticalSpacer;
     QPushButton *editAbutton;
+    QSpacerItem *verticalSpacer;
     QPushButton *clearButton;
-    QPushButton *editBbutton;
-    QSpacerItem *verticalSpacer_2;
     QPushButton *runButton;
     QComboBox *selectShape;
+    QPushButton *editBbutton;
     QSpacerItem *verticalSpacer_3;
+    QSpacerItem *verticalSpacer_2;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label;
     QLCDNumber *lcdNumber;
+    QComboBox *portSelector;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -78,42 +79,42 @@ public:
         gridLayout = new QGridLayout();
         gridLayout->setSpacing(6);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        gridLayout->addItem(verticalSpacer, 7, 0, 1, 1);
-
         editAbutton = new QPushButton(horizontalLayoutWidget);
         editAbutton->setObjectName(QStringLiteral("editAbutton"));
 
-        gridLayout->addWidget(editAbutton, 3, 0, 1, 1);
+        gridLayout->addWidget(editAbutton, 4, 0, 1, 1);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout->addItem(verticalSpacer, 8, 0, 1, 1);
 
         clearButton = new QPushButton(horizontalLayoutWidget);
         clearButton->setObjectName(QStringLiteral("clearButton"));
 
-        gridLayout->addWidget(clearButton, 2, 0, 1, 1);
-
-        editBbutton = new QPushButton(horizontalLayoutWidget);
-        editBbutton->setObjectName(QStringLiteral("editBbutton"));
-
-        gridLayout->addWidget(editBbutton, 4, 0, 1, 1);
-
-        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        gridLayout->addItem(verticalSpacer_2, 1, 0, 1, 1);
+        gridLayout->addWidget(clearButton, 3, 0, 1, 1);
 
         runButton = new QPushButton(horizontalLayoutWidget);
         runButton->setObjectName(QStringLiteral("runButton"));
 
-        gridLayout->addWidget(runButton, 8, 0, 1, 1);
+        gridLayout->addWidget(runButton, 9, 0, 1, 1);
 
         selectShape = new QComboBox(horizontalLayoutWidget);
         selectShape->setObjectName(QStringLiteral("selectShape"));
 
-        gridLayout->addWidget(selectShape, 6, 0, 1, 1);
+        gridLayout->addWidget(selectShape, 7, 0, 1, 1);
+
+        editBbutton = new QPushButton(horizontalLayoutWidget);
+        editBbutton->setObjectName(QStringLiteral("editBbutton"));
+
+        gridLayout->addWidget(editBbutton, 5, 0, 1, 1);
 
         verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        gridLayout->addItem(verticalSpacer_3, 5, 0, 1, 1);
+        gridLayout->addItem(verticalSpacer_3, 6, 0, 1, 1);
+
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout->addItem(verticalSpacer_2, 2, 0, 1, 1);
 
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
@@ -136,6 +137,11 @@ public:
 
 
         gridLayout->addLayout(verticalLayout, 0, 0, 1, 1);
+
+        portSelector = new QComboBox(horizontalLayoutWidget);
+        portSelector->setObjectName(QStringLiteral("portSelector"));
+
+        gridLayout->addWidget(portSelector, 1, 0, 1, 1);
 
 
         horizontalLayout->addLayout(gridLayout);
@@ -162,8 +168,8 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
         editAbutton->setText(QApplication::translate("MainWindow", "Edit shape A", Q_NULLPTR));
         clearButton->setText(QApplication::translate("MainWindow", "Clear", Q_NULLPTR));
-        editBbutton->setText(QApplication::translate("MainWindow", "Edit Shape B", Q_NULLPTR));
         runButton->setText(QApplication::translate("MainWindow", "Run", Q_NULLPTR));
+        editBbutton->setText(QApplication::translate("MainWindow", "Edit Shape B", Q_NULLPTR));
         label->setText(QApplication::translate("MainWindow", "Framerate", Q_NULLPTR));
     } // retranslateUi
 

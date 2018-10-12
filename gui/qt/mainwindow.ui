@@ -29,7 +29,14 @@
      </item>
      <item>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="7" column="0">
+       <item row="4" column="0">
+        <widget class="QPushButton" name="editAbutton">
+         <property name="text">
+          <string>Edit shape A</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0">
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -43,28 +50,31 @@
         </spacer>
        </item>
        <item row="3" column="0">
-        <widget class="QPushButton" name="editAbutton">
-         <property name="text">
-          <string>Edit shape A</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
         <widget class="QPushButton" name="clearButton">
          <property name="text">
           <string>Clear</string>
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
+       <item row="9" column="0">
+        <widget class="QPushButton" name="runButton">
+         <property name="text">
+          <string>Run</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QComboBox" name="selectShape"/>
+       </item>
+       <item row="5" column="0">
         <widget class="QPushButton" name="editBbutton">
          <property name="text">
           <string>Edit Shape B</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
-        <spacer name="verticalSpacer_2">
+       <item row="6" column="0">
+        <spacer name="verticalSpacer_3">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -76,18 +86,8 @@
          </property>
         </spacer>
        </item>
-       <item row="8" column="0">
-        <widget class="QPushButton" name="runButton">
-         <property name="text">
-          <string>Run</string>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="0">
-        <widget class="QComboBox" name="selectShape"/>
-       </item>
-       <item row="5" column="0">
-        <spacer name="verticalSpacer_3">
+       <item row="2" column="0">
+        <spacer name="verticalSpacer_2">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -116,6 +116,9 @@
           </layout>
          </item>
         </layout>
+       </item>
+       <item row="1" column="0">
+        <widget class="QComboBox" name="portSelector"/>
        </item>
       </layout>
      </item>
