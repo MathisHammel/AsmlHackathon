@@ -44,7 +44,7 @@ public:
     QPushButton *clearButton;
     QPushButton *editBbutton;
     QSpacerItem *verticalSpacer_2;
-    QPushButton *pushButton;
+    QPushButton *runButton;
     QComboBox *selectShape;
     QSpacerItem *verticalSpacer_3;
     QVBoxLayout *verticalLayout;
@@ -101,10 +101,10 @@ public:
 
         gridLayout->addItem(verticalSpacer_2, 1, 0, 1, 1);
 
-        pushButton = new QPushButton(horizontalLayoutWidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
+        runButton = new QPushButton(horizontalLayoutWidget);
+        runButton->setObjectName(QStringLiteral("runButton"));
 
-        gridLayout->addWidget(pushButton, 8, 0, 1, 1);
+        gridLayout->addWidget(runButton, 8, 0, 1, 1);
 
         selectShape = new QComboBox(horizontalLayoutWidget);
         selectShape->setObjectName(QStringLiteral("selectShape"));
@@ -143,7 +143,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 787, 17));
+        menuBar->setGeometry(QRect(0, 0, 787, 26));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -163,7 +163,7 @@ public:
         editAbutton->setText(QApplication::translate("MainWindow", "Edit shape A", Q_NULLPTR));
         clearButton->setText(QApplication::translate("MainWindow", "Clear", Q_NULLPTR));
         editBbutton->setText(QApplication::translate("MainWindow", "Edit Shape B", Q_NULLPTR));
-        pushButton->setText(QApplication::translate("MainWindow", "Run", Q_NULLPTR));
+        runButton->setText(QApplication::translate("MainWindow", "Run", Q_NULLPTR));
         label->setText(QApplication::translate("MainWindow", "Framerate", Q_NULLPTR));
     } // retranslateUi
 
