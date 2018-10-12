@@ -7,7 +7,7 @@
 #include "Tasks_ExampleTransmitTask.hpp"
 #include "Tasks_ExampleDisplayTask.hpp"
 #include "MeshControl.hpp"
-#include "../algorithms/shapes.hpp"
+#include "shapes.hpp"
 
 
 // Translation unit local variables
@@ -39,8 +39,9 @@ void setup()
 
    MY_DEBUG_PRINTLN(F("Setup completed"));
    */
-  Shapes::Shape * shapes = new Shapes::Shape();
-  char** fullimage = shapes->get(Shapes::TRIANGLE, 4, 1);
+    Shapes::Shape obj;
+    Shapes::Type t = Shapes::DIAMOND;
+          char** fullimage = obj.get(t, 4, 1);
   int x, y;
 
   if(NODE_ID == 1) {
@@ -82,7 +83,7 @@ void setup()
 //! Called repeatedly after setup().
 void loop()
 {
-    mesh.setPixel(0,0,255);
+    //mesh.setPixel(0,0,255);
    //taskScheduler.execute();
    //meshNetwork.update();
 }

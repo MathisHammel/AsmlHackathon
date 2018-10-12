@@ -54,7 +54,7 @@ void MeshControl::morphImage(char image1[32][32], char image2[32][32]){
 
 void MeshControl::localSetPixel(char x, char y, char intensity) {
     MY_DEBUG_PRINTF("localSetPixel(%d, %d)\n", x, y);
-    m_lmd.setPixel(y ^ 24, 7 - x, intensity > 128);
+    m_lmd.setPixel(y ^ 24, 7 - x, intensity > 0);
     m_lmd.display();
 }
 
@@ -63,14 +63,14 @@ void MeshControl::localDisplayImage(char image[8][32]) {
 
     for(x = 0 ; x < 8 ; x++) {
         for(y = 0; y < 32; y++) {
-            m_lmd.setPixel(y ^ 24, 7 - x, image[x][y] > 128);
+            m_lmd.setPixel(y ^ 24, 7 - x, image[x][y] > 0);
         }
     }
     m_lmd.display();
 }
 
 void MeshControl::transferPixel(int nodeId, char x, char y, char intensity) {
-    m_lmd.setPixel(y ^ 24, 7 - x, intensity > 128);
+    m_lmd.setPixel(y ^ 24, 7 - x, intensity > 0);
     m_lmd.display();
 }
 
