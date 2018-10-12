@@ -18,6 +18,19 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->editAbutton, &QPushButton::pressed, this, &MainWindow::selectA);
     connect(ui->editBbutton, &QPushButton::pressed, this, &MainWindow::selectB);
 
+    ui->selectShape->addItem("----");
+    ui->selectShape->addItem("Triangle");
+    ui->selectShape->addItem("Rectangle");
+    ui->selectShape->addItem("Diamond");
+
+    connect(ui->selectShape, static_cast<void(QComboBox::*)(int)>(&QComboBox::activated), this, [this](int i){
+        qDebug() << i << " selected";
+        if (i > 0){
+            //m_currentModel = ;
+            update();
+        }
+    });
+
     m_currentModel = &m_modelA;
     selectA();
 }

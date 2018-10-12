@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
@@ -35,12 +36,14 @@ public:
     QHBoxLayout *horizontalLayout;
     PaletteEditor *canvas;
     QGridLayout *gridLayout;
-    QPushButton *editBbutton;
     QPushButton *editAbutton;
-    QPushButton *clearButton;
-    QPushButton *pushButton;
-    QSpacerItem *verticalSpacer;
+    QPushButton *editBbutton;
     QSpacerItem *verticalSpacer_2;
+    QPushButton *pushButton;
+    QPushButton *clearButton;
+    QSpacerItem *verticalSpacer;
+    QComboBox *selectShape;
+    QSpacerItem *verticalSpacer_3;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -68,33 +71,42 @@ public:
         gridLayout = new QGridLayout();
         gridLayout->setSpacing(6);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        editAbutton = new QPushButton(horizontalLayoutWidget);
+        editAbutton->setObjectName(QStringLiteral("editAbutton"));
+
+        gridLayout->addWidget(editAbutton, 2, 0, 1, 1);
+
         editBbutton = new QPushButton(horizontalLayoutWidget);
         editBbutton->setObjectName(QStringLiteral("editBbutton"));
 
         gridLayout->addWidget(editBbutton, 3, 0, 1, 1);
 
-        editAbutton = new QPushButton(horizontalLayoutWidget);
-        editAbutton->setObjectName(QStringLiteral("editAbutton"));
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        gridLayout->addWidget(editAbutton, 2, 0, 1, 1);
+        gridLayout->addItem(verticalSpacer_2, 0, 0, 1, 1);
+
+        pushButton = new QPushButton(horizontalLayoutWidget);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+
+        gridLayout->addWidget(pushButton, 7, 0, 1, 1);
 
         clearButton = new QPushButton(horizontalLayoutWidget);
         clearButton->setObjectName(QStringLiteral("clearButton"));
 
         gridLayout->addWidget(clearButton, 1, 0, 1, 1);
 
-        pushButton = new QPushButton(horizontalLayoutWidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-
-        gridLayout->addWidget(pushButton, 5, 0, 1, 1);
-
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        gridLayout->addItem(verticalSpacer, 4, 0, 1, 1);
+        gridLayout->addItem(verticalSpacer, 6, 0, 1, 1);
 
-        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        selectShape = new QComboBox(horizontalLayoutWidget);
+        selectShape->setObjectName(QStringLiteral("selectShape"));
 
-        gridLayout->addItem(verticalSpacer_2, 0, 0, 1, 1);
+        gridLayout->addWidget(selectShape, 5, 0, 1, 1);
+
+        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout->addItem(verticalSpacer_3, 4, 0, 1, 1);
 
 
         horizontalLayout->addLayout(gridLayout);
@@ -119,10 +131,10 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
-        editBbutton->setText(QApplication::translate("MainWindow", "Edit Shape B", Q_NULLPTR));
         editAbutton->setText(QApplication::translate("MainWindow", "Edit shape A", Q_NULLPTR));
-        clearButton->setText(QApplication::translate("MainWindow", "Clear", Q_NULLPTR));
+        editBbutton->setText(QApplication::translate("MainWindow", "Edit Shape B", Q_NULLPTR));
         pushButton->setText(QApplication::translate("MainWindow", "Run", Q_NULLPTR));
+        clearButton->setText(QApplication::translate("MainWindow", "Clear", Q_NULLPTR));
     } // retranslateUi
 
 };

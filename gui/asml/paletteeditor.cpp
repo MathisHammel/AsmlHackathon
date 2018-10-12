@@ -26,7 +26,7 @@ void PaletteEditor::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
 
-    int size = width()/32;
+    int size = boxSize();
 
     painter.setPen(m_penRed);
 
