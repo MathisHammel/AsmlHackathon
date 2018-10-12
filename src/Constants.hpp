@@ -1,4 +1,4 @@
-#define NODE_ID 2
+#define NODE_ID 4
 
 #if NODE_ID==1
     #define MASTER 1

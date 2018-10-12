@@ -40,7 +40,7 @@ void setup()
    MY_DEBUG_PRINTLN(F("Setup completed"));
    */
     Shapes::Shape obj;
-    Shapes::Type t = Shapes::DIAMOND;
+    Shapes::Type t = Shapes::ROUND;
           char** fullimage = obj.get(t, 4, 1);
   int x, y;
 

@@ -1,5 +1,6 @@
 #include "shapes.hpp"
 #include <cmath>
+#include <stdio.h>
 
 namespace Shapes {
     char** Shape::get(Shapes::Type shape_type, int n, int width = 1) { 
@@ -55,6 +56,31 @@ namespace Shapes {
                 }
 
             break;
+
+            case ROUND:
+                for ( int l = 0; l < width; l++) {
+                    /*
+                    for (i = mid - 1, j = l; i >= l; i--, j++) 
+                        mat[i][j] = 1;
+                    for (i++, j = mid; i < mid; i++, j++)
+                        mat[i][j] = 1;
+                    for (j = SIZE - 1 - l; i < SIZE - l; i++, j--)
+                        mat[i][j] = 1;
+                    for (i--, j = mid - 1; i >= mid; i--, j--)
+                        mat[i][j] = 1;*/
+                    
+                }
+                float i;
+                for(i = 0.0; i<=6.29; i+=0.05) {
+                        int x=16 + 16*cos(i);
+                        int y=16 + 16*sin(i);
+                        if(x>=0 && x<32 && y>=0 && y<32){
+                            mat[x][y] = 1;
+                        }
+                }
+
+            break;
+
         }
         return mat;
     }
