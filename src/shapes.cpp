@@ -1,5 +1,8 @@
 #include "shapes.hpp"
 #include <math.h>
+#include <stdio.h>
+#include <iostream>
+using namespace std;
 
 namespace Shapes {
     char** Shape::get(Shapes::Type shape_type, int n, int width = 1) { 
@@ -59,15 +62,17 @@ namespace Shapes {
             case ROUND:
                 for ( int l = 0; l < width; l++) {
                     int i, j;
-                    for (i = mid, j = l; i >= l; i--, j++)
+                    for (i = mid - 1, j = l; i >= l; i--, j++) 
                         mat[i][j] = 1;
-                    for (j = mid + 1; i <= mid; i++, j++)
+                    for (i++, j = mid; i < mid; i++, j++)
                         mat[i][j] = 1;
                     for (j = SIZE - 1 - l; i < SIZE - l; i++, j--)
                         mat[i][j] = 1;
-                    for (j = mid; i > mid; i--, j--)
+                    for (i--, j = mid - 1; i >= mid; i--, j--)
                         mat[i][j] = 1;
                 }
+
+            break;
 
         }
         return mat;
