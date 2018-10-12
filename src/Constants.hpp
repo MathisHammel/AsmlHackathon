@@ -1,4 +1,4 @@
-#define NODE_ID 1
+#define NODE_ID 4
 
 #if NODE_ID==1
     #define MASTER 1
@@ -8,3 +8,5 @@
 
 
 #define MSG_TYPE_IMG "image"
+
+#define SEGMENT_PIN 16
