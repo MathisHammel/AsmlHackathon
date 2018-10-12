@@ -97,10 +97,10 @@ namespace Shapes {
 
                 for(int i=0;i<8;i++)
                     for(int j=0;j<32;j++) {
-                        mat[i][j] = image1[i][j] == 255;
-                        mat[i+8][j] = image2[i][j] == 255;
-                        mat[i+16][j] = image3[i][j] == 255;
-                        mat[i+24][j] = image4[i][j] == 255;
+                        mat[j][i] = image1[i][j] == 255;
+                        mat[j][i+8] = image2[i][j] == 255;
+                        mat[j][i+16] = image3[i][j] == 255;
+                        mat[j][i+24] = image4[i][j] == 255;
                     }
 
             break;
