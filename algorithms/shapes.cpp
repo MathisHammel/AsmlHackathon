@@ -1,8 +1,6 @@
 #include "shapes.hpp"
 #include <math.h>
 #include <stdio.h>
-#include <iostream>
-using namespace std;
 
 namespace Shapes {
     char** Shape::get(Shapes::Type shape_type, int n, int width = 1) { 
