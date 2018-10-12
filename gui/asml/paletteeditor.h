@@ -22,13 +22,16 @@ public:
         m_rows = rows;
         m_columns = cols;
     }
-//    QSize sizeHint() const;
+
+    Q_SLOT void clear();
+    QSize sizeHint() const;
 
 protected:
 
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void paintEvent(QPaintEvent *event);
+    void drawAtPixel(const QPoint& pos, bool value);
 
 private:
 
@@ -38,16 +41,13 @@ private:
     QColor color;
     QPen m_penRed;
 
-    int m_rows = 8;
+    int m_rows = 38;
     int m_columns = 32;
 
     int m_lastR = -1;
     int m_lastC = -1;
 
     vector<vector<bool>> m_model;
-
-
-
 };
 
 

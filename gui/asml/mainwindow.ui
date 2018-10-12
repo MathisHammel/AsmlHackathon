@@ -30,23 +30,23 @@
      <item>
       <layout class="QGridLayout" name="gridLayout">
        <item row="2" column="0">
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="editBbutton">
          <property name="text">
-          <string>PushButton</string>
+          <string>Edit Shape B</string>
          </property>
         </widget>
        </item>
        <item row="0" column="0">
-        <widget class="QPushButton" name="pushButton_3">
+        <widget class="QPushButton" name="clearButton">
          <property name="text">
-          <string>PushButton</string>
+          <string>Clear</string>
          </property>
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="editAbutton">
          <property name="text">
-          <string>PushButton</string>
+          <string>Edit shape A</string>
          </property>
         </widget>
        </item>

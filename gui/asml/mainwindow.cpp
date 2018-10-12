@@ -9,8 +9,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->canvas->setFixedSize(QSize(500, 500));
     ui->canvas->show();
+
+    connect(ui->clearButton, &QPushButton::pressed, ui->canvas, &PaletteEditor::clear);
 }
 
 

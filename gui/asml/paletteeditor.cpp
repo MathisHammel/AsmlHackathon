@@ -15,6 +15,10 @@ PaletteEditor::PaletteEditor(QWidget* parent):
     m_penRed = QPen(QBrush(Qt::black), 1);
 }
 
+QSize PaletteEditor::sizeHint() const{
+    return QSize(500, 500);
+}
+
 int PaletteEditor::boxSize()
 {
     return width()/32;
@@ -37,6 +41,28 @@ void PaletteEditor::paintEvent(QPaintEvent *event)
             painter.drawRect(QRectF(posX, posY, size, size));
         }
     }
+}
+
+void PaletteEditor::drawAtPixel(const QPoint& pos, bool value){
+    int x = pos.x();
+    int y = pos.y();
+
+    int rHeight = m_columns*width()/32;
+
+    int c = x/boxSize();
+    int r = y/boxSize();
+
+    if (c >= m_model[0].size())
+        return;
+    if (r >= m_model.size())
+        return;
+
+    m_model[r][c] = value;
+
+    m_lastR = r;
+    m_lastC = c;
+
+    update();
 }
 
 void PaletteEditor::swapAtPixel(const QPoint& pos, bool trackSame){
@@ -77,5 +103,12 @@ void PaletteEditor::mousePressEvent(QMouseEvent *event){
 void PaletteEditor::mouseMoveEvent(QMouseEvent *event)
 {
     if (event->buttons() & Qt::LeftButton)
-        swapAtPixel(event->pos(), true);
+        drawAtPixel(event->pos(), true);
+    else if (event->buttons() & Qt::RightButton)
+        drawAtPixel(event->pos(), false);
+}
+
+void PaletteEditor::clear(){
+    m_model = vector<vector<bool>>(m_rows, vector<bool>(m_columns, false));
+    update();
 }

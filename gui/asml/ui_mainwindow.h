@@ -34,9 +34,9 @@ public:
     QHBoxLayout *horizontalLayout;
     PaletteEditor *canvas;
     QGridLayout *gridLayout;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton_3;
-    QPushButton *pushButton;
+    QPushButton *editBbutton;
+    QPushButton *clearButton;
+    QPushButton *editAbutton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -64,20 +64,20 @@ public:
         gridLayout = new QGridLayout();
         gridLayout->setSpacing(6);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        pushButton_2 = new QPushButton(horizontalLayoutWidget);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        editBbutton = new QPushButton(horizontalLayoutWidget);
+        editBbutton->setObjectName(QStringLiteral("editBbutton"));
 
-        gridLayout->addWidget(pushButton_2, 2, 0, 1, 1);
+        gridLayout->addWidget(editBbutton, 2, 0, 1, 1);
 
-        pushButton_3 = new QPushButton(horizontalLayoutWidget);
-        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        clearButton = new QPushButton(horizontalLayoutWidget);
+        clearButton->setObjectName(QStringLiteral("clearButton"));
 
-        gridLayout->addWidget(pushButton_3, 0, 0, 1, 1);
+        gridLayout->addWidget(clearButton, 0, 0, 1, 1);
 
-        pushButton = new QPushButton(horizontalLayoutWidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
+        editAbutton = new QPushButton(horizontalLayoutWidget);
+        editAbutton->setObjectName(QStringLiteral("editAbutton"));
 
-        gridLayout->addWidget(pushButton, 1, 0, 1, 1);
+        gridLayout->addWidget(editAbutton, 1, 0, 1, 1);
 
 
         horizontalLayout->addLayout(gridLayout);
@@ -102,9 +102,9 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
-        pushButton_2->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
-        pushButton_3->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
-        pushButton->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
+        editBbutton->setText(QApplication::translate("MainWindow", "Edit Shape B", Q_NULLPTR));
+        clearButton->setText(QApplication::translate("MainWindow", "Clear", Q_NULLPTR));
+        editAbutton->setText(QApplication::translate("MainWindow", "Edit shape A", Q_NULLPTR));
     } // retranslateUi
 
 };
