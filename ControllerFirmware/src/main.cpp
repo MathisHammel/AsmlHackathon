@@ -8,6 +8,8 @@
 #include "Tasks_ExampleDisplayTask.hpp"
 #include "MeshControl.hpp"
 
+using namespace std;
+
 // Translation unit local variables
 namespace {
 
@@ -48,7 +50,7 @@ void loop()
     //mesh.setPixel(0,0,255);
     char recv[4097];
     int nbytes = Serial.readBytes(recv, 10);
-    //Serial.printf("Received %d bytes :", nbytes);
+    Serial.printf("Received %d bytes", nbytes);
    //taskScheduler.execute();
    //meshNetwork.update();
 }
