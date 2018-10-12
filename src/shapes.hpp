@@ -6,12 +6,13 @@ namespace Shapes {
     enum Type {
         SQUARE,
         TRIANGLE,
-        DIAMOND
+        DIAMOND,
+        ROUND
     };
 
     class Shape {
     public:
-        char** get(Type shape, int SIZE, int width);
+        char** get(Type shape, int n, int width);
     };
 
 }

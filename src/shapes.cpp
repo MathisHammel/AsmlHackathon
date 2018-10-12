@@ -55,6 +55,20 @@ namespace Shapes {
                 }
 
             break;
+
+            case ROUND:
+                for ( int l = 0; l < width; l++) {
+                    int i, j;
+                    for (i = mid, j = l; i >= l; i--, j++)
+                        mat[i][j] = 1;
+                    for (j = mid + 1; i <= mid; i++, j++)
+                        mat[i][j] = 1;
+                    for (j = SIZE - 1 - l; i < SIZE - l; i++, j--)
+                        mat[i][j] = 1;
+                    for (j = mid; i > mid; i--, j--)
+                        mat[i][j] = 1;
+                }
+
         }
         return mat;
     }
