@@ -81,11 +81,7 @@ void PaletteEditor::swapAtPixel(const QPoint& pos, bool trackSame){
     if (r >= 32)
         return;
 
-    qDebug() << m_model[r][c];
     m_model[r][c] = !m_model[r][c];
-
-    qDebug() << c << " " << r;
-    qDebug() << m_model[r][c] ;
 
     m_lastR = r;
     m_lastC = c;
