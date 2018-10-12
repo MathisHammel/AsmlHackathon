@@ -1,3 +1,5 @@
+#ifndef __MeshCtl__
+#define __MeshCtl__
 
 #include "Facilities_MeshNetwork.hpp"
 #include <LEDMatrixDriver.hpp>
@@ -18,3 +20,5 @@ private:
     Facilities::MeshNetwork& _mesh;
     LEDMatrixDriver m_lmd;
 };
+
+#endif // __MeshCtl__

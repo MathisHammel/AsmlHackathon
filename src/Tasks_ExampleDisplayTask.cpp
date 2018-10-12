@@ -9,6 +9,9 @@
 
 #include "Debug.hpp"
 #include "Constants.hpp"
+#include "Shapes.hpp"
+#include "MeshControl.hpp"
+
 
 #include "Facilities_MeshNetwork.hpp"
 
@@ -24,46 +27,88 @@ const int ExampleDisplayTask::LEDMATRIX_HEIGHT = 7;
 const int ExampleDisplayTask::LEDMATRIX_SEGMENTS = 4;
 const int ExampleDisplayTask::LEDMATRIX_INTENSITY = 5;
 const int ExampleDisplayTask::LEDMATRIX_CS_PIN = 16;
-const unsigned long ExampleDisplayTask::POLL_DELAY_MS = 100;
+const unsigned long ExampleDisplayTask::POLL_DELAY_MS = 20;
 
 //! Initializes the LED Matrix display.
 ExampleDisplayTask::ExampleDisplayTask(Facilities::MeshNetwork& mesh) :
    Task(POLL_DELAY_MS , TASK_FOREVER, std::bind(&ExampleDisplayTask::execute, this)),
+   meshctl(mesh),
    m_mesh(mesh),
    m_lmd(LEDMATRIX_SEGMENTS, LEDMATRIX_CS_PIN),
    m_x(0)
 {
    m_lmd.setEnabled(true);
    m_lmd.setIntensity(LEDMATRIX_INTENSITY);
-
-   if(MASTER) {
-       m_lmd.clear();
-       m_lmd.setPixel(0, 0, true);
-       m_lmd.display();
-   } else {
-       m_mesh.onReceive(std::bind(&ExampleDisplayTask::receivedJsonPacket, this, std::placeholders::_1, std::placeholders::_2));
-   }
+    m_mesh.onReceive(std::bind(&ExampleDisplayTask::receivedCb, this, std::placeholders::_1, std::placeholders::_2));
+    MY_DEBUG_PRINTLN("Mesh bound.");
 }
 
 //! Update display
 void ExampleDisplayTask::execute()
 {
-    if(!MASTER) {
-        m_lmd.clear();
-        m_lmd.setColumn(m_x^24, 255);
-        m_lmd.display();
-    }
+
 }
 
 void ExampleDisplayTask::receivedCb(Facilities::MeshNetwork::NodeId nodeId, String& msg)
 {
-   MY_DEBUG_PRINTLN("Received data in ExampleDisplayTask");
+   MY_DEBUG_PRINTF("Received ");
+   MY_DEBUG_PRINTLN(msg);
+   Shapes::Shape obj;
+   Shapes::Type t;
 
-   if(++m_x>LEDMATRIX_WIDTH)
-   {
-      m_x=0;
+   if (msg.equals("Large")) {
+     t = Shapes::LARGE_OPAQUE;
    }
-   
+   else if (msg.equals("Small")) {
+     t = Shapes::SMALL_OPAQUE;
+   }
+   else if (msg.equals("Annular")) {
+     t = Shapes::ROUND;
+   }
+   else if (msg.equals("Reset")) {
+       char img[8][32] = {0};
+        meshctl.localDisplayImage(img);
+        MY_DEBUG_PRINTLN("Image update done.");
+        return;
+   } else { return;}
+
+   char** fullimage = obj.get(t, 4, 1);
+    int x,y;
+   if(NODE_ID == 1) {
+    char image[8][32];
+    for (x = 0; x < 8; x++) {
+      for(y = 0; y < 32; y++) {
+        image[x][y] = fullimage[x][y];
+      }
+    }
+    meshctl.localDisplayImage(image);
+
+  } else if (NODE_ID == 2) {
+        char image[8][32];
+        for (x = 0; x < 8; x++) {
+            for(y = 0; y < 32; y++) {
+                image[x][y] = fullimage[x+8][y];
+            }
+        }  
+        meshctl.localDisplayImage(image);
+    } else if (NODE_ID == 3) {
+        char image[8][32];
+        for (x = 0; x < 8; x++) {
+            for(y = 0; y < 32; y++) {
+                image[x][y] = fullimage[x+16][y];
+            }
+        }
+        meshctl.localDisplayImage(image);
+    } else if (NODE_ID == 4) {
+        char image[8][32];
+        for (x = 0; x < 8; x++) {
+            for(y = 0; y < 32; y++) {
+                image[x][y] = fullimage[x+24][y];
+            }
+        }        
+        meshctl.localDisplayImage(image);
+    }
+    MY_DEBUG_PRINTLN("Image update done.");
 }
 
 void ExampleDisplayTask::receivedJsonPacket(Facilities::MeshNetwork::NodeId nodeId, String& msg)
@@ -83,7 +128,5 @@ void ExampleDisplayTask::receivedJsonPacket(Facilities::MeshNetwork::NodeId node
         }
         
     }
-
 }
-
 } // namespace Tasks

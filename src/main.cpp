@@ -8,7 +8,8 @@
 #include "Tasks_ExampleDisplayTask.hpp"
 #include "MeshControl.hpp"
 #include "shapes.hpp"
-
+#include <functional>
+#include <time.h>
 
 // Translation unit local variables
 namespace {
@@ -32,16 +33,16 @@ void setup()
 /*
    // Create and add tasks.
    taskScheduler.addTask( exampleTransmitTask );
+   */
    taskScheduler.addTask( exampleDisplayTask );
-   exampleTransmitTask.enable();
+   //exampleTransmitTask.enable();
    exampleDisplayTask.enable();
 
 
    MY_DEBUG_PRINTLN(F("Setup completed"));
-   */
     Shapes::Shape obj;
     Shapes::Type t = Shapes::ROUND;
-          char** fullimage = obj.get(t, 4, 1);
+    char** fullimage = obj.get(t, 4, 1);
   int x, y;
 
   if(NODE_ID == 1) {
@@ -80,10 +81,60 @@ void setup()
 }
 }
 
+void delay2(int x){
+  while(--x) {
+    taskScheduler.execute();
+    meshNetwork.update();
+  }
+}
 //! Called repeatedly after setup().
 void loop()
 {
-    //mesh.setPixel(0,0,255);
-   //taskScheduler.execute();
-   //meshNetwork.update();
+  taskScheduler.execute();
+   meshNetwork.update();
+  if(MASTER) {
+    MY_DEBUG_PRINTLN("Sending msg Large");
+    String msg = F("Large");
+    meshNetwork.sendBroadcastAll(msg);
+    taskScheduler.execute();
+    meshNetwork.update();
+    delay2(300000);
+
+    MY_DEBUG_PRINTLN("Sending msg Reset");
+    msg = F("Reset");
+    meshNetwork.sendBroadcastAll(msg);
+    taskScheduler.execute();
+    meshNetwork.update();
+    delay2(100000);
+
+    MY_DEBUG_PRINTLN("Sending msg Small");
+    msg = F("Small");
+    meshNetwork.sendBroadcastAll(msg);
+    taskScheduler.execute();
+    meshNetwork.update();
+    delay2(300000);
+
+    MY_DEBUG_PRINTLN("Sending msg Reset");
+    msg = F("Reset");
+    meshNetwork.sendBroadcastAll(msg);
+    taskScheduler.execute();
+    meshNetwork.update();
+    delay2(100000);
+
+    MY_DEBUG_PRINTLN("Sending msg Annular");
+    msg = F("Annular");
+    meshNetwork.sendBroadcastAll(msg);
+    taskScheduler.execute();
+    meshNetwork.update();
+    delay2(300000);
+
+    MY_DEBUG_PRINTLN("Sending msg Reset");
+    msg = F("Reset");
+    meshNetwork.sendBroadcastAll(msg);
+    taskScheduler.execute();
+    meshNetwork.update();
+    delay2(100000);
+  }
+  //mesh.setPixel(0,0,255);
+
 }

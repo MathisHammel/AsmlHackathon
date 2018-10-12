@@ -21,7 +21,7 @@ const uint16_t MeshNetwork::PORT = 5555;
 //! \note Does not construct and initialize in one go to be able to initialize after serial debug port has been opened.
 MeshNetwork::MeshNetwork()
 {
-   m_mesh.onReceive(std::bind(&MeshNetwork::receivedCb, this, std::placeholders::_1, std::placeholders::_2));
+   //m_mesh.onReceive(std::bind(&MeshNetwork::receivedCb, this, std::placeholders::_1, std::placeholders::_2));
    //m_mesh.onNewConnection(...);
    //m_mesh.onChangedConnections(...);
    //m_mesh.onNodeTimeAdjusted(...);
@@ -45,6 +45,12 @@ void MeshNetwork::sendBroadcast(String &message)
 {
    MY_DEBUG_PRINT("Broadcasting message: "); MY_DEBUG_PRINTLN(message);
    m_mesh.sendBroadcast(message, false); // false: Do not include self.
+}
+
+void MeshNetwork::sendBroadcastAll(String &message)
+{
+   MY_DEBUG_PRINT("Broadcasting message: "); MY_DEBUG_PRINTLN(message);
+   m_mesh.sendBroadcast(message, true); // false: Do not include self.
 }
 
 MeshNetwork::NodeId MeshNetwork::getMyNodeId()

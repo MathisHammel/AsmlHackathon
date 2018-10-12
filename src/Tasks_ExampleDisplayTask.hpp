@@ -10,6 +10,7 @@
 #define __Tasks_ExampleDisplayTask__
 
 #include "Facilities_MeshNetwork.hpp"
+#include "MeshControl.hpp"
 
 #include <painlessMesh.h>
 #include <LEDMatrixDriver.hpp>
@@ -45,9 +46,8 @@ private:
 
    Facilities::MeshNetwork& m_mesh;
    LEDMatrixDriver m_lmd;
-
+   MeshControl meshctl;
    int m_x;
-
    void receivedCb(Facilities::MeshNetwork::NodeId nodeId, String& msg);
     void receivedJsonPacket(Facilities::MeshNetwork::NodeId nodeId, String& msg);
 
