@@ -49,7 +49,7 @@ private:
    int m_x;
 
    void receivedCb(Facilities::MeshNetwork::NodeId nodeId, String& msg);
-
+    void receivedJsonPacket(Facilities::MeshNetwork::NodeId nodeId, String& msg);
 
 };
 
