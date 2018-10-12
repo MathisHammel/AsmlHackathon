@@ -26,6 +26,9 @@ public:
     Q_SLOT void clear();
     QSize sizeHint() const;
 
+    vector<vector<bool>> getModel(){return m_model;}
+    void loadModel(vector<vector<bool>> model){m_model = model;}
+
 protected:
 
     void mousePressEvent(QMouseEvent *event);
