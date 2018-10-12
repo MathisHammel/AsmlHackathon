@@ -27,14 +27,17 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    paletteeditor.cpp
+        paletteeditor.cpp \
+        ../../src/shapes.cpp
 
 HEADERS += \
         mainwindow.h \
-    paletteeditor.h
+        paletteeditor.h \
+        ../../src/shapes.h
 
 FORMS += \
         mainwindow.ui
+
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
