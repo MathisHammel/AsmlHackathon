@@ -17,13 +17,13 @@ CXXFLAGS      = -pipe -fno-keep-inline-dllexport -O2 -std=gnu++0x -frtti -Wall -
 INCPATH       = -I. -IC:\Qt\5.6.3\mingw49_32\include -IC:\Qt\5.6.3\mingw49_32\include\QtWidgets -IC:\Qt\5.6.3\mingw49_32\include\QtGui -IC:\Qt\5.6.3\mingw49_32\include\QtANGLE -IC:\Qt\5.6.3\mingw49_32\include\QtNetwork -IC:\Qt\5.6.3\mingw49_32\include\QtCore -Irelease -I. -IC:\Qt\5.6.3\mingw49_32\mkspecs\win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-s -Wl,-subsystem,windows -mthreads
-LIBS        =        -lmingw32 -LC:\Qt\5.6.3\mingw49_32\lib C:\Qt\5.6.3\mingw49_32\lib\libqtmain.a -lshell32 -LC:\utils\my_sql\my_sql\lib -LC:\utils\postgresql\pgsql\lib C:\Qt\5.6.3\mingw49_32\lib\libQt5Widgets.a C:\Qt\5.6.3\mingw49_32\lib\libQt5Gui.a C:\Qt\5.6.3\mingw49_32\lib\libQt5Network.a C:\Qt\5.6.3\mingw49_32\lib\libQt5Core.a 
+LIBS        =        -lmingw32 -LC:\Qt\5.6.3\mingw49_32\lib C:\Qt\5.6.3\mingw49_32\lib\libqtmain.a -lshell32 -LC:\utils\my_sql\my_sql\lib -LC:\utils\postgresql\pgsql\lib C:\Qt\5.6.3\mingw49_32\lib\libQt5Widgets.a C:\Qt\5.6.3\mingw49_32\lib\libQt5Gui.a C:\Qt\5.6.3\mingw49_32\lib\libQt5Network.a C:\Qt\5.6.3\mingw49_32\lib\libQt5Core.a release\asml_resource_res.o 
 QMAKE         = C:\Qt\5.6.3\mingw49_32\bin\qmake.exe
 IDC           = idc
 IDL           = midl
 ZIP           = zip -r -9
 DEF_FILE      = 
-RES_FILE      = 
+RES_FILE      = release\asml_resource_res.o
 COPY          = copy /y
 SED           = $(QMAKE) -install sed
 COPY_FILE     = copy /y
@@ -71,8 +71,11 @@ DESTDIR_TARGET = release\asml.exe
 first: all
 all: Makefile.Release  $(DESTDIR_TARGET)
 
-$(DESTDIR_TARGET): ui_mainwindow.h $(OBJECTS) 
+$(DESTDIR_TARGET): ui_mainwindow.h $(OBJECTS) release/asml_resource_res.o
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) $(OBJECTS)  $(LIBS)
+
+release/asml_resource_res.o: asml_resource.rc
+	windres -i asml_resource.rc -o release\asml_resource_res.o --include-dir=. $(DEFINES)
 
 qmake: FORCE
 	@$(QMAKE) -spec win32-g++ -o Makefile.Release asml.pro
@@ -84,6 +87,7 @@ dist:
 
 clean: compiler_clean 
 	-$(DEL_FILE) release\main.o release\mainwindow.o release\paletteeditor.o release\shapes.o release\moc_mainwindow.o release\moc_paletteeditor.o
+	-$(DEL_FILE) release\asml_resource_res.o
 
 distclean: clean 
 	-$(DEL_FILE) $(DESTDIR_TARGET)
@@ -831,6 +835,9 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 		C:/Qt/5.6.3/mingw49_32/include/QtCore/QDebug \
 		C:/Qt/5.6.3/mingw49_32/include/QtCore/QThread \
 		C:/Qt/5.6.3/mingw49_32/include/QtCore/qthread.h \
+		C:/Qt/5.6.3/mingw49_32/include/QtCore/QTimer \
+		C:/Qt/5.6.3/mingw49_32/include/QtCore/qtimer.h \
+		C:/Qt/5.6.3/mingw49_32/include/QtCore/qbasictimer.h \
 		C:/Qt/5.6.3/mingw49_32/include/QtWidgets/QMessageBox \
 		C:/Qt/5.6.3/mingw49_32/include/QtWidgets/qmessagebox.h \
 		C:/Qt/5.6.3/mingw49_32/include/QtWidgets/qdialog.h

@@ -45,10 +45,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->canvas->show();
 
-//    for (QSerialPortInfo port : QSerialPortInfo::availablePorts())
-//    {
-//        ui->portSelector->addItem(port.portName());
-//    }
+    this->setWindowTitle("Asml DEMO");
 
     m_refreshTimer = new QTimer(this);
     m_refreshTimer->setInterval(2000);
