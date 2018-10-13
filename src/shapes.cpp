@@ -109,7 +109,7 @@ namespace Shapes {
     char** Shape::resize(char **img, int n) { 
         int src_width = 32, src_height = 32;
         int dest_width = n * 8;
-        int dest_height = 32;
+        int dest_height = n * 8;
 
         char **dest = new char*[32];
         for(int i=0;i<32;i++) {
