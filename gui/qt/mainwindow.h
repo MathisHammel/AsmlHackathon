@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include <QGraphicsScene>
-#include <QtSerialPort>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkRequest>
 #include <QtNetwork/QNetworkReply>
@@ -30,9 +29,9 @@ public:
     Q_SLOT void selectA();
     Q_SLOT void selectB();
     void saveCurrent();
-    Q_SLOT void writeToPort();
+    //Q_SLOT void writeToPort();
     void read();
-    void selectPort(const QString& portName);
+    //void selectPort(const QString& portName);
     Q_SLOT void sendRequest();
     Q_SLOT void sendRequestPanels();
 
@@ -51,8 +50,6 @@ private:
     vector<vector<bool>> m_modelB;
 
     QTimer* m_refreshTimer;
-
-    QSerialPort* m_serialPort;
 };
 
 #endif // MAINWINDOW_H
