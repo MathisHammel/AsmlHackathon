@@ -12,9 +12,9 @@
 
 #define IP "10.170.15.1"
 
-vector<vector<bool>> toModel(char** mat){
+Model toModel(char** mat){
 
-    vector<vector<bool>> res = vector<vector<bool>>(32, vector<bool>(32, false));
+    Model res = Model(32, vector<bool>(32, false));
     for (int i = 0; i < 32; ++i){
         for (int j = 0; j < 32; ++j){
             res[i][j] = (mat[i][j] != 0);
@@ -23,7 +23,7 @@ vector<vector<bool>> toModel(char** mat){
     return res;
 }
 
-char** fromModel(vector<vector<bool>> mat){
+char** fromModel(Model mat){
 
     char** res = new char*[32];
     for (int i = 0; i < 32; ++i){
@@ -38,7 +38,7 @@ char** fromModel(vector<vector<bool>> mat){
     return res;
 }
 
-QString toString(const vector<vector<bool>> model){
+QString toString(const Model model){
     QString s;
     for (int i = 0; i < 32; ++i){
         for (int j = 0; j < 32; ++j){

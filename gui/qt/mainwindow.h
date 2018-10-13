@@ -45,9 +45,9 @@ private:
 
     Ui::MainWindow *ui;
 
-    vector<vector<bool>>* m_currentModel;
-    vector<vector<bool>> m_modelA;
-    vector<vector<bool>> m_modelB;
+    Model* m_currentModel;
+    Model m_modelA;
+    Model m_modelB;
 
     QTimer* m_refreshTimer;
     int m_numPanels = 4;

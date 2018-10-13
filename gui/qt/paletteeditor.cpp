@@ -8,7 +8,7 @@
 PaletteEditor::PaletteEditor(QWidget* parent):
     QWidget(parent)
 {
-    m_model = vector<vector<bool>>(m_rows, vector<bool>(m_columns, false));
+    m_model = Model(32, vector<bool>(32, false));
 
     m_penRed = QPen(QBrush(Qt::black), 1);
 }
@@ -112,6 +112,7 @@ void PaletteEditor::mouseMoveEvent(QMouseEvent *event)
 }
 
 void PaletteEditor::clear(){
-    m_model = vector<vector<bool>>(m_rows, vector<bool>(m_columns, false));
+    m_model = Model(32, vector<bool>(32, false));
+    m_bigModel = Model(m_rows, vector<bool>(m_columns, false));
     update();
 }
