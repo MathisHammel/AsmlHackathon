@@ -119,7 +119,7 @@ namespace Shapes {
         }
         for(int dx=0;dx<32;dx++)
             for(int dy=0;dy<32;dy++) 
-                dest[dx*dest_width/src_width][dy*dest_height/src_height] |= img[dx][dy];
+                dest[dy*dest_height/src_height][dx*dest_width/src_width] |= img[dy][dx];
         return dest;
     }
 }
