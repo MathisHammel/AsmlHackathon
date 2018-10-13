@@ -4,8 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
-QT += serialport
+QT += core gui
+QT += network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -29,19 +29,17 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         paletteeditor.cpp \
-        ../../src/shapes.cpp \
-        serialportwriter.cpp
+        ../../src/shapes.cpp
 
 HEADERS += \
         mainwindow.h \
         paletteeditor.h \
-        ../../src/shapes.hpp \
-        serialportwriter.h
+        ../../src/shapes.hpp
 
 FORMS += \
         mainwindow.ui
 
-
+RC_ICONS += demo_icon.ico
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

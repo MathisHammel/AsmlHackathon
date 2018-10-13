@@ -169,7 +169,7 @@ Makefile: asml.pro C:/Qt/5.6.3/mingw49_32/mkspecs/win32-g++/qmake.conf C:/Qt/5.6
 		C:/Qt/5.6.3/mingw49_32/lib/qtmain.prl \
 		C:/Qt/5.6.3/mingw49_32/lib/Qt5Widgets.prl \
 		C:/Qt/5.6.3/mingw49_32/lib/Qt5Gui.prl \
-		C:/Qt/5.6.3/mingw49_32/lib/Qt5SerialPort.prl \
+		C:/Qt/5.6.3/mingw49_32/lib/Qt5Network.prl \
 		C:/Qt/5.6.3/mingw49_32/lib/Qt5Core.prl
 	$(QMAKE) -spec win32-g++ -o Makefile asml.pro
 C:/Qt/5.6.3/mingw49_32/mkspecs/features/spec_pre.prf:
@@ -282,7 +282,7 @@ asml.pro:
 C:/Qt/5.6.3/mingw49_32/lib/qtmain.prl:
 C:/Qt/5.6.3/mingw49_32/lib/Qt5Widgets.prl:
 C:/Qt/5.6.3/mingw49_32/lib/Qt5Gui.prl:
-C:/Qt/5.6.3/mingw49_32/lib/Qt5SerialPort.prl:
+C:/Qt/5.6.3/mingw49_32/lib/Qt5Network.prl:
 C:/Qt/5.6.3/mingw49_32/lib/Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -spec win32-g++ -o Makefile asml.pro

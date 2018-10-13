@@ -20,11 +20,8 @@
 #include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
-#include <QtWidgets/QStatusBar>
-#include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 #include <paletteeditor.h>
@@ -40,21 +37,21 @@ public:
     PaletteEditor *canvas;
     QGridLayout *gridLayout;
     QPushButton *editAbutton;
-    QSpacerItem *verticalSpacer;
     QPushButton *clearButton;
     QPushButton *runButton;
+    QSpacerItem *verticalSpacer;
+    QSpacerItem *verticalSpacer_2;
+    QSpacerItem *verticalSpacer_3;
     QComboBox *selectShape;
     QPushButton *editBbutton;
-    QSpacerItem *verticalSpacer_3;
-    QSpacerItem *verticalSpacer_2;
+    QComboBox *portSelector;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label;
     QLCDNumber *lcdNumber;
-    QComboBox *portSelector;
-    QMenuBar *menuBar;
-    QToolBar *mainToolBar;
-    QStatusBar *statusBar;
+    QHBoxLayout *horizontalLayout_9;
+    QLabel *label_8;
+    QLCDNumber *panels;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -63,9 +60,14 @@ public:
         MainWindow->resize(787, 556);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(1);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(centralWidget->sizePolicy().hasHeightForWidth());
+        centralWidget->setSizePolicy(sizePolicy);
         horizontalLayoutWidget = new QWidget(centralWidget);
         horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(30, 10, 731, 481));
+        horizontalLayoutWidget->setGeometry(QRect(30, 10, 731, 521));
         horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
@@ -82,39 +84,44 @@ public:
         editAbutton = new QPushButton(horizontalLayoutWidget);
         editAbutton->setObjectName(QStringLiteral("editAbutton"));
 
-        gridLayout->addWidget(editAbutton, 4, 0, 1, 1);
-
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        gridLayout->addItem(verticalSpacer, 8, 0, 1, 1);
+        gridLayout->addWidget(editAbutton, 5, 0, 1, 1);
 
         clearButton = new QPushButton(horizontalLayoutWidget);
         clearButton->setObjectName(QStringLiteral("clearButton"));
 
-        gridLayout->addWidget(clearButton, 3, 0, 1, 1);
+        gridLayout->addWidget(clearButton, 4, 0, 1, 1);
 
         runButton = new QPushButton(horizontalLayoutWidget);
         runButton->setObjectName(QStringLiteral("runButton"));
 
-        gridLayout->addWidget(runButton, 9, 0, 1, 1);
+        gridLayout->addWidget(runButton, 10, 0, 1, 1);
 
-        selectShape = new QComboBox(horizontalLayoutWidget);
-        selectShape->setObjectName(QStringLiteral("selectShape"));
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        gridLayout->addWidget(selectShape, 7, 0, 1, 1);
-
-        editBbutton = new QPushButton(horizontalLayoutWidget);
-        editBbutton->setObjectName(QStringLiteral("editBbutton"));
-
-        gridLayout->addWidget(editBbutton, 5, 0, 1, 1);
-
-        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        gridLayout->addItem(verticalSpacer_3, 6, 0, 1, 1);
+        gridLayout->addItem(verticalSpacer, 9, 0, 1, 1);
 
         verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         gridLayout->addItem(verticalSpacer_2, 2, 0, 1, 1);
+
+        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout->addItem(verticalSpacer_3, 7, 0, 1, 1);
+
+        selectShape = new QComboBox(horizontalLayoutWidget);
+        selectShape->setObjectName(QStringLiteral("selectShape"));
+
+        gridLayout->addWidget(selectShape, 8, 0, 1, 1);
+
+        editBbutton = new QPushButton(horizontalLayoutWidget);
+        editBbutton->setObjectName(QStringLiteral("editBbutton"));
+
+        gridLayout->addWidget(editBbutton, 6, 0, 1, 1);
+
+        portSelector = new QComboBox(horizontalLayoutWidget);
+        portSelector->setObjectName(QStringLiteral("portSelector"));
+
+        gridLayout->addWidget(portSelector, 1, 0, 1, 1);
 
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
@@ -135,29 +142,31 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_2);
 
+        horizontalLayout_9 = new QHBoxLayout();
+        horizontalLayout_9->setSpacing(6);
+        horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
+        label_8 = new QLabel(horizontalLayoutWidget);
+        label_8->setObjectName(QStringLiteral("label_8"));
+
+        horizontalLayout_9->addWidget(label_8);
+
+        panels = new QLCDNumber(horizontalLayoutWidget);
+        panels->setObjectName(QStringLiteral("panels"));
+
+        horizontalLayout_9->addWidget(panels);
+
+
+        verticalLayout->addLayout(horizontalLayout_9);
+
 
         gridLayout->addLayout(verticalLayout, 0, 0, 1, 1);
-
-        portSelector = new QComboBox(horizontalLayoutWidget);
-        portSelector->setObjectName(QStringLiteral("portSelector"));
-
-        gridLayout->addWidget(portSelector, 1, 0, 1, 1);
 
 
         horizontalLayout->addLayout(gridLayout);
 
-        horizontalLayout->setStretch(0, 2);
+        horizontalLayout->setStretch(0, 3);
+        horizontalLayout->setStretch(1, 1);
         MainWindow->setCentralWidget(centralWidget);
-        menuBar = new QMenuBar(MainWindow);
-        menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 787, 26));
-        MainWindow->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(MainWindow);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
-        statusBar = new QStatusBar(MainWindow);
-        statusBar->setObjectName(QStringLiteral("statusBar"));
-        MainWindow->setStatusBar(statusBar);
 
         retranslateUi(MainWindow);
 
@@ -172,6 +181,7 @@ public:
         runButton->setText(QApplication::translate("MainWindow", "Run", Q_NULLPTR));
         editBbutton->setText(QApplication::translate("MainWindow", "Edit Shape B", Q_NULLPTR));
         label->setText(QApplication::translate("MainWindow", "Framerate", Q_NULLPTR));
+        label_8->setText(QApplication::translate("MainWindow", "Panels", Q_NULLPTR));
     } // retranslateUi
 
 };
