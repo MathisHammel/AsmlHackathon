@@ -7,8 +7,24 @@
 
 
 MeshControl::MeshControl(Facilities::MeshNetwork& mesh): _mesh(mesh), m_lmd(4, SEGMENT_PIN) {
+    mesh.onReceive(std::bind(&MeshControl::recvScreen, this, std::placeholders::_1, std::placeholders::_2));
+    m_lmd.clear();
+    m_lmd.display();
     m_lmd.setEnabled(true);
     m_lmd.setIntensity(5);
+}
+
+void MeshControl::recvScreen(Facilities::MeshNetwork::NodeId nodeId, String& msg) {
+    MY_DEBUG_PRINTLN("Node received new frame");
+    char image[8][32] = {0};
+    int x,y;
+    for(x=8*NODE_ID-8; x<8*NODE_ID; x++) {
+        for(y=0; y<32; y++)
+        {
+            image[x%8][y] = msg[x+y*32] - '0';
+        }
+    }
+    localDisplayImage(image);
 }
 
 void MeshControl::setPixel(char x, char y, char intensity) {
