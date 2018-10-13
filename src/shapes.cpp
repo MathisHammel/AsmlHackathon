@@ -1,7 +1,6 @@
 #include "shapes.hpp"
 #include <cmath>
 #include <stdio.h>
-
 namespace Shapes {
     char** Shape::get(Shapes::Type shape_type, int n, int width = 1) { 
         int SIZE = 8 * n;
@@ -106,5 +105,24 @@ namespace Shapes {
             break;
         }
         return mat;
+    }
+
+    char** Shape::resize(char **img, int n) { 
+        int src_width = 32, src_height = 32;
+        int dest_width = n * 8;
+        int dest_height = 32;
+
+        char **dest = new char*[32];
+        for(int i=0;i<32;i++) {
+            dest[i] = new char[32];
+            for(int j=0;j<32;j++)
+                dest[i][j] = 0;
+        }
+
+        for(int dx=0;dx<dest_width;dx++)
+            for(int dy=0;dy<dest_height;dy++) {
+                dest[dx][dy] |= img[dy*src_height/dest_height][dx*src_width/dest_width];
+            }
+        return dest;
     }
 }
