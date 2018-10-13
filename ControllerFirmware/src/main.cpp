@@ -8,6 +8,7 @@
 #include "Tasks_ExampleDisplayTask.hpp"
 #include "MeshControl.hpp"
 
+
 using namespace std;
 
 // Translation unit local variables
@@ -29,6 +30,7 @@ void setup()
 
    // Create MeshNetwork
    meshNetwork.initialize(F("RedTeam"), F("passforRed"), taskScheduler);
+   
 /*
    // Create and add tasks.
    taskScheduler.addTask( exampleTransmitTask );
@@ -49,8 +51,10 @@ void loop()
 {
     //mesh.setPixel(0,0,255);
     char recv[4097];
-    int nbytes = Serial.readBytes(recv, 10);
-    Serial.printf("Received %d bytes", nbytes);
+    //int nbytes = Serial.readBytes(recv, 10); // This crashes
+    recv[10]=0;
+    //MY_DEBUG_PRINTF("Received %d bytes : %s\n", nbytes, recv);
+    //Serial.writeBytes(recv, 10);
    //taskScheduler.execute();
    //meshNetwork.update();
 }

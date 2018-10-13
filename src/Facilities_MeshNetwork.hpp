@@ -28,6 +28,8 @@ public:
 	MeshNetwork(MeshNetwork&& other) = delete;
 	MeshNetwork& operator=(const MeshNetwork& other) = delete;
 
+    int getNetSize();
+
    void update();
    void initialize(const __FlashStringHelper *prefix, const __FlashStringHelper *password, Scheduler& taskScheduler);
 
