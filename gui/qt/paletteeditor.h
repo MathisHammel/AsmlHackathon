@@ -11,6 +11,8 @@ using namespace std;
 #include <QBrush>
 #include <QWidget>
 
+using Model = vector<vector<bool>>;
+
 class PaletteEditor : public QWidget
 {
     Q_OBJECT
@@ -26,8 +28,18 @@ public:
     Q_SLOT void clear();
 //    QSize sizeHint() const;
 
-    vector<vector<bool>> getModel(){return m_model;}
-    void loadModel(vector<vector<bool>> model){m_model = model;}
+    Model getModel(){return m_model;}
+    Model getBigModel(){return m_bigModel;}
+
+    void loadModel(vector<vector<bool>> model, bool isBig)
+    {
+        m_model = model;
+        if (isBig)
+            m_bigModel = model;
+    }
+
+    void resizePalette(int rows, int columns);
+
 
 protected:
 
@@ -50,7 +62,8 @@ private:
     int m_lastR = -1;
     int m_lastC = -1;
 
-    vector<vector<bool>> m_model;
+    Model m_model;
+    Model m_bigModel;
 };
 
 

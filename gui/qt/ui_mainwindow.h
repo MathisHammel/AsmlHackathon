@@ -17,12 +17,10 @@
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 #include <paletteeditor.h>
 
@@ -36,35 +34,35 @@ public:
     QHBoxLayout *horizontalLayout;
     PaletteEditor *canvas;
     QGridLayout *gridLayout;
-    QPushButton *editAbutton;
     QPushButton *clearButton;
+    QLabel *label_2;
+    QPushButton *editAbutton;
     QPushButton *runButton;
-    QSpacerItem *verticalSpacer;
-    QSpacerItem *verticalSpacer_2;
-    QSpacerItem *verticalSpacer_3;
     QComboBox *selectShape;
+    QSpacerItem *verticalSpacer_2;
     QPushButton *editBbutton;
-    QComboBox *portSelector;
-    QVBoxLayout *verticalLayout;
-    QHBoxLayout *horizontalLayout_2;
-    QLabel *label;
-    QLCDNumber *lcdNumber;
-    QHBoxLayout *horizontalLayout_9;
-    QLabel *label_8;
-    QLCDNumber *panels;
+    QSpacerItem *verticalSpacer;
+    QSpacerItem *verticalSpacer_3;
+    QLabel *label_3;
+    QComboBox *adjustPanels;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
         MainWindow->resize(787, 556);
+        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
+        MainWindow->setSizePolicy(sizePolicy);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-        sizePolicy.setHorizontalStretch(1);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(centralWidget->sizePolicy().hasHeightForWidth());
-        centralWidget->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(1);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(centralWidget->sizePolicy().hasHeightForWidth());
+        centralWidget->setSizePolicy(sizePolicy1);
         horizontalLayoutWidget = new QWidget(centralWidget);
         horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
         horizontalLayoutWidget->setGeometry(QRect(30, 10, 731, 521));
@@ -81,85 +79,57 @@ public:
         gridLayout = new QGridLayout();
         gridLayout->setSpacing(6);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        editAbutton = new QPushButton(horizontalLayoutWidget);
-        editAbutton->setObjectName(QStringLiteral("editAbutton"));
-
-        gridLayout->addWidget(editAbutton, 5, 0, 1, 1);
-
         clearButton = new QPushButton(horizontalLayoutWidget);
         clearButton->setObjectName(QStringLiteral("clearButton"));
 
-        gridLayout->addWidget(clearButton, 4, 0, 1, 1);
+        gridLayout->addWidget(clearButton, 2, 0, 1, 1);
+
+        label_2 = new QLabel(horizontalLayoutWidget);
+        label_2->setObjectName(QStringLiteral("label_2"));
+
+        gridLayout->addWidget(label_2, 6, 0, 1, 1);
+
+        editAbutton = new QPushButton(horizontalLayoutWidget);
+        editAbutton->setObjectName(QStringLiteral("editAbutton"));
+
+        gridLayout->addWidget(editAbutton, 3, 0, 1, 1);
 
         runButton = new QPushButton(horizontalLayoutWidget);
         runButton->setObjectName(QStringLiteral("runButton"));
 
-        gridLayout->addWidget(runButton, 10, 0, 1, 1);
-
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        gridLayout->addItem(verticalSpacer, 9, 0, 1, 1);
-
-        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        gridLayout->addItem(verticalSpacer_2, 2, 0, 1, 1);
-
-        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        gridLayout->addItem(verticalSpacer_3, 7, 0, 1, 1);
+        gridLayout->addWidget(runButton, 11, 0, 1, 1);
 
         selectShape = new QComboBox(horizontalLayoutWidget);
         selectShape->setObjectName(QStringLiteral("selectShape"));
 
-        gridLayout->addWidget(selectShape, 8, 0, 1, 1);
+        gridLayout->addWidget(selectShape, 7, 0, 1, 1);
+
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout->addItem(verticalSpacer_2, 0, 0, 1, 1);
 
         editBbutton = new QPushButton(horizontalLayoutWidget);
         editBbutton->setObjectName(QStringLiteral("editBbutton"));
 
-        gridLayout->addWidget(editBbutton, 6, 0, 1, 1);
+        gridLayout->addWidget(editBbutton, 4, 0, 1, 1);
 
-        portSelector = new QComboBox(horizontalLayoutWidget);
-        portSelector->setObjectName(QStringLiteral("portSelector"));
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        gridLayout->addWidget(portSelector, 1, 0, 1, 1);
+        gridLayout->addItem(verticalSpacer, 10, 0, 1, 1);
 
-        verticalLayout = new QVBoxLayout();
-        verticalLayout->setSpacing(6);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setSpacing(6);
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        label = new QLabel(horizontalLayoutWidget);
-        label->setObjectName(QStringLiteral("label"));
+        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        horizontalLayout_2->addWidget(label);
+        gridLayout->addItem(verticalSpacer_3, 5, 0, 1, 1);
 
-        lcdNumber = new QLCDNumber(horizontalLayoutWidget);
-        lcdNumber->setObjectName(QStringLiteral("lcdNumber"));
+        label_3 = new QLabel(horizontalLayoutWidget);
+        label_3->setObjectName(QStringLiteral("label_3"));
 
-        horizontalLayout_2->addWidget(lcdNumber);
+        gridLayout->addWidget(label_3, 8, 0, 1, 1);
 
+        adjustPanels = new QComboBox(horizontalLayoutWidget);
+        adjustPanels->setObjectName(QStringLiteral("adjustPanels"));
 
-        verticalLayout->addLayout(horizontalLayout_2);
-
-        horizontalLayout_9 = new QHBoxLayout();
-        horizontalLayout_9->setSpacing(6);
-        horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
-        label_8 = new QLabel(horizontalLayoutWidget);
-        label_8->setObjectName(QStringLiteral("label_8"));
-
-        horizontalLayout_9->addWidget(label_8);
-
-        panels = new QLCDNumber(horizontalLayoutWidget);
-        panels->setObjectName(QStringLiteral("panels"));
-
-        horizontalLayout_9->addWidget(panels);
-
-
-        verticalLayout->addLayout(horizontalLayout_9);
-
-
-        gridLayout->addLayout(verticalLayout, 0, 0, 1, 1);
+        gridLayout->addWidget(adjustPanels, 9, 0, 1, 1);
 
 
         horizontalLayout->addLayout(gridLayout);
@@ -176,12 +146,12 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
-        editAbutton->setText(QApplication::translate("MainWindow", "Edit shape A", Q_NULLPTR));
         clearButton->setText(QApplication::translate("MainWindow", "Clear", Q_NULLPTR));
+        label_2->setText(QApplication::translate("MainWindow", "Predefined shape:", Q_NULLPTR));
+        editAbutton->setText(QApplication::translate("MainWindow", "Edit shape A", Q_NULLPTR));
         runButton->setText(QApplication::translate("MainWindow", "Run", Q_NULLPTR));
         editBbutton->setText(QApplication::translate("MainWindow", "Edit Shape B", Q_NULLPTR));
-        label->setText(QApplication::translate("MainWindow", "Framerate", Q_NULLPTR));
-        label_8->setText(QApplication::translate("MainWindow", "Panels", Q_NULLPTR));
+        label_3->setText(QApplication::translate("MainWindow", "Adjust for number of panels", Q_NULLPTR));
     } // retranslateUi
 
 };

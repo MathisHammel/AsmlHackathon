@@ -16,6 +16,7 @@ namespace Shapes {
     class Shape {
     public:
         char** get(Type shape, int n, int width);
+        char** resize(char **img, int n);
     };
 
 }

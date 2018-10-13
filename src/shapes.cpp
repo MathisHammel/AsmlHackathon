@@ -1,7 +1,8 @@
 #include "shapes.hpp"
 #include <cmath>
 #include <stdio.h>
-
+#include <iostream>
+using namespace std;
 namespace Shapes {
     char** Shape::get(Shapes::Type shape_type, int n, int width = 1) { 
         int SIZE = 8 * n;
@@ -11,7 +12,6 @@ namespace Shapes {
             for(int j=0;j<32;j++)
                 mat[i][j] = 0;
         }
-
         int level = SIZE - 1;
         int border = 0;
         int mid = SIZE / 2;
@@ -19,9 +19,8 @@ namespace Shapes {
         if (shape_type == SMALL_OPAQUE)
              r = 5;
 
-        int offsideX = (SIZE - 2*r) / 2;
-        int offsideY = (SIZE - 2*r) / 2;
-
+        int offsideX = max(0, (SIZE - 2*r) / 2);
+        int offsideY = max(0, (SIZE - 2*r) / 2);
         switch (shape_type) {
             case SQUARE:
                 for(int i=0;i<SIZE;i++) 
@@ -66,7 +65,6 @@ namespace Shapes {
             case SMALL_OPAQUE:
             case LARGE_OPAQUE:
             case ROUND:
-                
                 for(float i = 0.0; i<=6.29; i+=0.05) {
                         int x=r + r*cos(i);
                         int y=r + r*sin(i);
@@ -76,13 +74,13 @@ namespace Shapes {
                 }
 
                 if (shape_type == LARGE_OPAQUE || shape_type == SMALL_OPAQUE) {
-                    for(int i=0;i<SIZE;i++) {
-                        int last = SIZE - 1, start = 0;
-                        while (start < SIZE && mat[i][start] != 1) start++;
+                    for(int i=0;i<32;i++) {
+                        int last = 31, start = 0;
+                        while (start < 32 && mat[i][start] != 1) start++;
                         while (last >=0 && mat[i][last] != 1) last--;
 
-                        for(int j=0;j<SIZE;j++) {
-                            if (start <= j && j <= last) 
+                        for(int j=0;j<32;j++) {
+                            if (start <= j && j <= last)   
                                 mat[i][j] = 1;
                         }
                     }
@@ -106,5 +104,22 @@ namespace Shapes {
             break;
         }
         return mat;
+    }
+
+    char** Shape::resize(char **img, int n) { 
+        int src_width = 32, src_height = 32;
+        int dest_width = n * 8;
+        int dest_height = n * 8;
+
+        char **dest = new char*[32];
+        for(int i=0;i<32;i++) {
+            dest[i] = new char[32];
+            for(int j=0;j<32;j++)
+                dest[i][j] = 0;
+        }
+        for(int dx=0;dx<32;dx++)
+            for(int dy=0;dy<32;dy++) 
+                dest[dy*dest_height/src_height][dx*dest_width/src_width] |= img[dy][dx];
+        return dest;
     }
 }

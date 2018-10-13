@@ -13,6 +13,7 @@
 
 //DONT DO IT, KIDS LIKE THIS
 using namespace std;
+using Model = vector<vector<bool>>;
 
 namespace Ui {
 class MainWindow;
@@ -29,9 +30,8 @@ public:
     Q_SLOT void selectA();
     Q_SLOT void selectB();
     void saveCurrent();
-    //Q_SLOT void writeToPort();
     void read();
-    //void selectPort(const QString& portName);
+
     Q_SLOT void sendRequest();
     Q_SLOT void sendRequestPanels();
 
@@ -45,11 +45,12 @@ private:
 
     Ui::MainWindow *ui;
 
-    vector<vector<bool>>* m_currentModel;
-    vector<vector<bool>> m_modelA;
-    vector<vector<bool>> m_modelB;
+    Model* m_currentModel;
+    Model m_modelA;
+    Model m_modelB;
 
     QTimer* m_refreshTimer;
+    int m_numPanels = 4;
 };
 
 #endif // MAINWINDOW_H
