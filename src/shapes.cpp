@@ -74,13 +74,13 @@ namespace Shapes {
                 }
 
                 if (shape_type == LARGE_OPAQUE || shape_type == SMALL_OPAQUE) {
-                    for(int i=0;i<SIZE;i++) {
-                        int last = SIZE - 1, start = 0;
-                        while (start < SIZE && mat[i][start] != 1) start++;
+                    for(int i=0;i<32;i++) {
+                        int last = 31, start = 0;
+                        while (start < 32 && mat[i][start] != 1) start++;
                         while (last >=0 && mat[i][last] != 1) last--;
 
-                        for(int j=0;j<SIZE;j++) {
-                            if (start <= j && j <= last) 
+                        for(int j=0;j<32;j++) {
+                            if (start <= j && j <= last)   
                                 mat[i][j] = 1;
                         }
                     }
@@ -118,9 +118,8 @@ namespace Shapes {
                 dest[i][j] = 0;
         }
         for(int dx=0;dx<32;dx++)
-            for(int dy=0;dy<32;dy++) {
+            for(int dy=0;dy<32;dy++) 
                 dest[dx*dest_width/src_width][dy*dest_height/src_height] |= img[dx][dy];
-            }
         return dest;
     }
 }
