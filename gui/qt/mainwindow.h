@@ -29,9 +29,8 @@ public:
     Q_SLOT void selectA();
     Q_SLOT void selectB();
     void saveCurrent();
-    //Q_SLOT void writeToPort();
     void read();
-    //void selectPort(const QString& portName);
+
     Q_SLOT void sendRequest();
     Q_SLOT void sendRequestPanels();
 

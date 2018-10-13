@@ -6,6 +6,7 @@
 #include <QThread>
 #include <QIODevice>
 #include <QTimer>
+#include <QStatusBar>
 
 #include <QMessageBox>
 
@@ -34,7 +35,7 @@ QString toString(const vector<vector<bool>> model){
 
 void MainWindow::resizeEvent(QResizeEvent* event)
 {
-   QMainWindow::resizeEvent(event);
+    QMainWindow::resizeEvent(event);
 }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -43,7 +44,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->canvas->show();
+    setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
+
+    ui->centralWidget->show();
 
     this->setWindowTitle("Asml DEMO");
 
