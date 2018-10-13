@@ -41,6 +41,11 @@ void MeshNetwork::update()
    m_mesh.update();
 }
 
+int MeshNetwork::getNetSize()
+{
+   return m_mesh._connections.size();
+}
+
 void MeshNetwork::sendBroadcast(String &message)
 {
    MY_DEBUG_PRINT("Broadcasting message: "); MY_DEBUG_PRINTLN(message);
