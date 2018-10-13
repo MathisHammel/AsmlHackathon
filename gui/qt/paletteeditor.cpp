@@ -22,6 +22,13 @@ int PaletteEditor::boxSize()
     return min(width(), height())/32;
 }
 
+void PaletteEditor::resizePalette(int rows, int columns)
+{
+    //shrink here
+    m_rows = rows;
+    m_columns = columns;
+}
+
 void PaletteEditor::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
@@ -30,12 +37,17 @@ void PaletteEditor::paintEvent(QPaintEvent *event)
 
     painter.setPen(m_penRed);
 
-    for (int r = 0; r < m_rows; ++r){
-        for (int c = 0; c < m_columns; ++c){
+    for (int r = 0; r < 32; ++r){
+        for (int c = 0; c < 32; ++c){
             int posY = r*size;
-            int posX = c*size;;
+            int posX = c*size;
 
             painter.setBrush(QBrush((m_model[r][c] ? Qt::red : Qt::transparent)));
+
+            if (r < m_rows && c < m_columns)
+                painter.setPen(QColor(Qt::black));
+            else
+                painter.setPen(QColor(Qt::gray));
             painter.drawEllipse(QRectF(posX, posY, size, size));
             //painter.drawRect(QRectF(posX, posY, size, size));
         }
@@ -49,9 +61,9 @@ void PaletteEditor::drawAtPixel(const QPoint& pos, bool value){
     int c = x/boxSize();
     int r = y/boxSize();
 
-    if (c >= 32 || c< 0)
+    if (c >= m_columns || c< 0)
         return;
-    if (r >= 32 || r < 0)
+    if (r >= m_rows || r < 0)
         return;
 
     m_model[r][c] = value;
@@ -73,9 +85,9 @@ void PaletteEditor::swapAtPixel(const QPoint& pos, bool trackSame){
     if (trackSame && m_lastC == c && m_lastR == r)
         return;
 
-    if (c >= 32 || c< 0)
+    if (c >= m_columns || c< 0)
         return;
-    if (r >= 32 || r < 0)
+    if (r >= m_rows || r < 0)
         return;
 
     m_model[r][c] = !m_model[r][c];

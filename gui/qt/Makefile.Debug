@@ -838,6 +838,8 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		C:/Qt/5.6.3/mingw49_32/include/QtCore/QTimer \
 		C:/Qt/5.6.3/mingw49_32/include/QtCore/qtimer.h \
 		C:/Qt/5.6.3/mingw49_32/include/QtCore/qbasictimer.h \
+		C:/Qt/5.6.3/mingw49_32/include/QtWidgets/QStatusBar \
+		C:/Qt/5.6.3/mingw49_32/include/QtWidgets/qstatusbar.h \
 		C:/Qt/5.6.3/mingw49_32/include/QtWidgets/QMessageBox \
 		C:/Qt/5.6.3/mingw49_32/include/QtWidgets/qmessagebox.h \
 		C:/Qt/5.6.3/mingw49_32/include/QtWidgets/qdialog.h

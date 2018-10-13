@@ -27,7 +27,17 @@ public:
 //    QSize sizeHint() const;
 
     vector<vector<bool>> getModel(){return m_model;}
-    void loadModel(vector<vector<bool>> model){m_model = model;}
+    vector<vector<bool>> getBigModel(){return m_bigModel;}
+
+    void loadModel(vector<vector<bool>> model, bool isBig)
+    {
+        m_model = model;
+        if (isBig)
+            m_bigModel = model;
+    }
+
+    void resizePalette(int rows, int columns);
+
 
 protected:
 
@@ -51,6 +61,7 @@ private:
     int m_lastC = -1;
 
     vector<vector<bool>> m_model;
+    vector<vector<bool>> m_bigModel;
 };
 
 

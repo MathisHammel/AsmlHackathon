@@ -13,6 +13,7 @@
 
 //DONT DO IT, KIDS LIKE THIS
 using namespace std;
+using Model = vector<vector<bool>>;
 
 namespace Ui {
 class MainWindow;
@@ -49,6 +50,7 @@ private:
     vector<vector<bool>> m_modelB;
 
     QTimer* m_refreshTimer;
+    int m_numPanels = 4;
 };
 
 #endif // MAINWINDOW_H
