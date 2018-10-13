@@ -1,6 +1,8 @@
 #include "shapes.hpp"
 #include <cmath>
 #include <stdio.h>
+#include <iostream>
+using namespace std;
 namespace Shapes {
     char** Shape::get(Shapes::Type shape_type, int n, int width = 1) { 
         int SIZE = 8 * n;
@@ -10,7 +12,6 @@ namespace Shapes {
             for(int j=0;j<32;j++)
                 mat[i][j] = 0;
         }
-
         int level = SIZE - 1;
         int border = 0;
         int mid = SIZE / 2;
@@ -18,9 +19,8 @@ namespace Shapes {
         if (shape_type == SMALL_OPAQUE)
              r = 5;
 
-        int offsideX = (SIZE - 2*r) / 2;
-        int offsideY = (SIZE - 2*r) / 2;
-
+        int offsideX = max(0, (SIZE - 2*r) / 2);
+        int offsideY = max(0, (SIZE - 2*r) / 2);
         switch (shape_type) {
             case SQUARE:
                 for(int i=0;i<SIZE;i++) 
@@ -65,7 +65,6 @@ namespace Shapes {
             case SMALL_OPAQUE:
             case LARGE_OPAQUE:
             case ROUND:
-                
                 for(float i = 0.0; i<=6.29; i+=0.05) {
                         int x=r + r*cos(i);
                         int y=r + r*sin(i);
@@ -118,10 +117,9 @@ namespace Shapes {
             for(int j=0;j<32;j++)
                 dest[i][j] = 0;
         }
-
-        for(int dx=0;dx<dest_width;dx++)
-            for(int dy=0;dy<dest_height;dy++) {
-                dest[dx][dy] |= img[dy*src_height/dest_height][dx*src_width/dest_width];
+        for(int dx=0;dx<32;dx++)
+            for(int dy=0;dy<32;dy++) {
+                dest[dx*dest_width/src_width][dy*dest_height/src_height] |= img[dx][dy];
             }
         return dest;
     }
