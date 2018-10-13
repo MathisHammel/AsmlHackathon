@@ -6,6 +6,10 @@
 #include <QThread>
 #include <QIODevice>
 
+#include <QMessageBox>
+
+#define IP "10.170.15.1"
+
 vector<vector<bool>> toModel(char** mat){
 
     vector<vector<bool>> res = vector<vector<bool>>(32, vector<bool>(32, false));
@@ -15,6 +19,21 @@ vector<vector<bool>> toModel(char** mat){
         }
     }
     return res;
+}
+
+QString toString(const vector<vector<bool>> model){
+    QString s;
+    for (int i = 0; i < 32; ++i){
+        for (int j = 0; j < 32; ++j){
+            s += ((model[i][j] != 0) ? "1" : "0");
+        }
+    }
+    return s;
+}
+
+void MainWindow::resizeEvent(QResizeEvent* event)
+{
+   QMainWindow::resizeEvent(event);
 }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -34,7 +53,13 @@ MainWindow::MainWindow(QWidget *parent) :
         selectPort(ui->portSelector->itemText(i) );
     });
 
-    ui->runButton->setEnabled(false);
+    m_refreshTimer = new QTimer(this);
+    m_refreshTimer->setInterval(2000);
+    m_refreshTimer->start();
+    connect(m_refreshTimer, &QTimer::timeout, this, &MainWindow::sendRequestPanels);
+
+
+    ui->runButton->setEnabled(true);
 
     //selectPort(ui->portSelector->itemText(0));
 
@@ -45,7 +70,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->clearButton, &QPushButton::pressed, ui->canvas, &PaletteEditor::clear);
     connect(ui->editAbutton, &QPushButton::pressed, this, &MainWindow::selectA);
     connect(ui->editBbutton, &QPushButton::pressed, this, &MainWindow::selectB);
-    connect(ui->runButton, &QPushButton::pressed, this, &MainWindow::writeToPort);
+    connect(ui->runButton, &QPushButton::pressed, this, &MainWindow::sendRequest);
 
     ui->selectShape->addItem("----");   
     ui->selectShape->addItem("Triangle");
@@ -101,6 +126,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_currentModel = &m_modelA;
     selectA();
+
+    ui->portSelector->setHidden(true);
 }
 
 void MainWindow::selectPort(const QString& portName)
@@ -181,14 +208,61 @@ void MainWindow::writeToPort(){
 
         qDebug() << "start to write";
         qDebug() << "written " << m_serialPort->write(writeData);
-        m_serialPort->flush();
+        //m_serialPort->flush();
         qDebug() << "wait for written" << m_serialPort->waitForBytesWritten(2000);
         //qDebug() << "wait for ready read" << m_serialPort->waitForReadyRead(2000);
 
         //read();
 }
 
+void MainWindow::sendRequest()
+{
+    QNetworkAccessManager * mgr = new QNetworkAccessManager(this);
+    connect(mgr,SIGNAL(finished(QNetworkReply*)),this,SLOT(onFinish(QNetworkReply*)));
+    connect(mgr,SIGNAL(finished(QNetworkReply*)),mgr,SLOT(deleteLater()));
+
+    saveCurrent();
+    QString img1 = toString(m_modelA);
+    QString img2 = toString(m_modelB);
+    QString request = QString("http:")+IP+"?img1=" + img1 + "\&img2=" + img2;
+
+    mgr->get(QNetworkRequest(QUrl(request)));
+    qDebug() << request;
+}
+
+void MainWindow::sendRequestPanels(){
+    QNetworkAccessManager * mgr = new QNetworkAccessManager(this);
+    connect(mgr,SIGNAL(finished(QNetworkReply*)),this,SLOT(onFinishPanels(QNetworkReply*)));
+    connect(mgr,SIGNAL(finished(QNetworkReply*)),mgr,SLOT(deleteLater()));
+
+    QString request = QString("http:")+IP+"?panels=";
+
+    mgr->get(QNetworkRequest(QUrl(request)));
+    qDebug() << request;
+}
+
+void MainWindow::onFinish(QNetworkReply *rep)
+{
+    QByteArray bts = rep->readAll();
+    QString str(bts);
+    QMessageBox::information(this,"sal",str,"ok");
+}
+
+void MainWindow::onFinishPanels(QNetworkReply *rep)
+{
+    QByteArray bts = rep->readAll();
+    QString str(bts);
+    int n = str.toInt();
+    ui->panels->display(n);
+    update();
+}
+
 void MainWindow::read(){
+
+    try{
+        //TODO - why this might crash?
+        //if (!m_serialPort->canReadLine())
+        //    return;
 
         QByteArray readData = m_serialPort->readAll();
         while (m_serialPort->waitForReadyRead(1000))
@@ -208,4 +282,9 @@ void MainWindow::read(){
         qDebug() << QObject::tr("Data successfully received from port %1")
                           .arg(m_serialPort->portName()) << endl;
         qDebug() << "Read" << readData << endl;
+    }
+    catch(...)
+    {
+
+    }
 }

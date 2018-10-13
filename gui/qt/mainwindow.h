@@ -4,6 +4,12 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QtSerialPort>
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork/QNetworkRequest>
+#include <QtNetwork/QNetworkReply>
+#include <QResizeEvent>
+
+
 #include <vector>
 
 //DONT DO IT, KIDS LIKE THIS
@@ -27,7 +33,14 @@ public:
     Q_SLOT void writeToPort();
     void read();
     void selectPort(const QString& portName);
+    Q_SLOT void sendRequest();
+    Q_SLOT void sendRequestPanels();
 
+    Q_SLOT void onFinishPanels(QNetworkReply *rep);
+    Q_SLOT void onFinish(QNetworkReply *rep);
+protected:
+
+    void resizeEvent(QResizeEvent* event);
 
 private:
 
@@ -36,6 +49,8 @@ private:
     vector<vector<bool>>* m_currentModel;
     vector<vector<bool>> m_modelA;
     vector<vector<bool>> m_modelB;
+
+    QTimer* m_refreshTimer;
 
     QSerialPort* m_serialPort;
 };

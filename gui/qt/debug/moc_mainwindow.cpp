@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[9];
-    char stringdata0[80];
+    QByteArrayData data[11];
+    char stringdata0[113];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,14 +35,17 @@ QT_MOC_LITERAL(2, 19, 0), // ""
 QT_MOC_LITERAL(3, 20, 7), // "selectB"
 QT_MOC_LITERAL(4, 28, 11), // "writeToPort"
 QT_MOC_LITERAL(5, 40, 11), // "sendRequest"
-QT_MOC_LITERAL(6, 52, 8), // "onFinish"
-QT_MOC_LITERAL(7, 61, 14), // "QNetworkReply*"
-QT_MOC_LITERAL(8, 76, 3) // "rep"
+QT_MOC_LITERAL(6, 52, 17), // "sendRequestPanels"
+QT_MOC_LITERAL(7, 70, 14), // "onFinishPanels"
+QT_MOC_LITERAL(8, 85, 14), // "QNetworkReply*"
+QT_MOC_LITERAL(9, 100, 3), // "rep"
+QT_MOC_LITERAL(10, 104, 8) // "onFinish"
 
     },
     "MainWindow\0selectA\0\0selectB\0writeToPort\0"
-    "sendRequest\0onFinish\0QNetworkReply*\0"
-    "rep"
+    "sendRequest\0sendRequestPanels\0"
+    "onFinishPanels\0QNetworkReply*\0rep\0"
+    "onFinish"
 };
 #undef QT_MOC_LITERAL
 
@@ -52,7 +55,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -60,18 +63,22 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   39,    2, 0x0a /* Public */,
-       3,    0,   40,    2, 0x0a /* Public */,
-       4,    0,   41,    2, 0x0a /* Public */,
-       5,    0,   42,    2, 0x0a /* Public */,
-       6,    1,   43,    2, 0x0a /* Public */,
+       1,    0,   49,    2, 0x0a /* Public */,
+       3,    0,   50,    2, 0x0a /* Public */,
+       4,    0,   51,    2, 0x0a /* Public */,
+       5,    0,   52,    2, 0x0a /* Public */,
+       6,    0,   53,    2, 0x0a /* Public */,
+       7,    1,   54,    2, 0x0a /* Public */,
+      10,    1,   57,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 7,    8,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 8,    9,
+    QMetaType::Void, 0x80000000 | 8,    9,
 
        0        // eod
 };
@@ -86,13 +93,22 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 1: _t->selectB(); break;
         case 2: _t->writeToPort(); break;
         case 3: _t->sendRequest(); break;
-        case 4: _t->onFinish((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
+        case 4: _t->sendRequestPanels(); break;
+        case 5: _t->onFinishPanels((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
+        case 6: _t->onFinish((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-        case 4:
+        case 5:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+            case 0:
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QNetworkReply* >(); break;
+            }
+            break;
+        case 6:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
@@ -128,13 +144,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 7;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 5)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 7;
     }
     return _id;
 }
